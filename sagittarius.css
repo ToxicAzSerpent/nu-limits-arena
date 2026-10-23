@@ -1,0 +1,268 @@
+/* ==========================================================
+   SAGITTARIUS AI — floating assistant (round 18)
+   ========================================================== */
+
+.sg-root { position: relative; z-index: 130; display: flex; align-items: center; }
+
+/* the panel escapes the header and floats above the page */
+.sg-root .sg-panel {
+  position: fixed;
+  right: 16px;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  z-index: 140;
+}
+
+/* ---------- launcher ---------- */
+.sg-launch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(29, 28, 27, .1);
+  border-radius: 50%;
+  background: #FFFDFA;
+  color: #17140F;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(84, 56, 48, .1);
+  transition: transform .26s cubic-bezier(.22,1,.36,1), opacity .24s ease;
+}
+.sg-launch:hover { transform: translateY(-2px) scale(1.03); }
+.sg-launch-logo svg { width: 20px; height: 20px; display: block; }
+
+.sg-launch-led {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9BE55A;
+  box-shadow: 0 0 6px rgba(155, 229, 90, .8);
+  opacity: .35;
+}
+
+.sg-root.is-open .sg-launch { opacity: 0; transform: scale(.7); pointer-events: none; }
+
+/* ---------- panel ---------- */
+.sg-panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(346px, calc(100vw - 32px));
+  max-height: min(72vh, 560px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #FFFDF9;
+  box-shadow: 0 26px 60px rgba(16, 12, 6, .38);
+  opacity: 0;
+  transform: translateY(12px) scale(.97);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity .24s ease, transform .28s cubic-bezier(.22,1,.36,1);
+}
+.sg-root.is-open .sg-panel { opacity: 1; transform: none; pointer-events: auto; }
+
+.sg-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 12px;
+  background: #17140F;
+  color: #F6EFE2;
+}
+.sg-mark { display: grid; place-items: center; width: 26px; height: 26px; color: #F2DCA8; }
+.sg-mark svg { width: 26px; height: 26px; display: block; }
+.sg-id { display: grid; gap: 1px; line-height: 1.1; }
+.sg-id b { font-size: 11.4px; font-weight: 820; letter-spacing: .1px; }
+.sg-id small { display: flex; align-items: center; gap: 5px; font-size: 7.4px; letter-spacing: .5px; color: rgba(246, 239, 226, .6); text-transform: uppercase; }
+
+.sg-led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9BE55A;
+  box-shadow: 0 0 0 0 rgba(155, 229, 90, .55);
+}
+.sg-root.is-thinking .sg-led,
+.sg-root.is-thinking .sg-launch-led {
+  animation: sgLed 0.85s ease-in-out infinite;
+  opacity: 1;
+}
+@keyframes sgLed {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(155, 229, 90, .55); filter: brightness(1); }
+  50% { box-shadow: 0 0 0 6px rgba(155, 229, 90, 0); filter: brightness(1.5); }
+}
+
+.sg-min {
+  margin-left: auto;
+  width: 26px; height: 26px;
+  border: 0; border-radius: 9px;
+  background: rgba(255, 255, 255, .1);
+  color: #F6EFE2;
+  font-size: 14px; line-height: 1;
+  cursor: pointer;
+  transition: background .18s ease;
+}
+.sg-min:hover { background: rgba(255, 255, 255, .2); }
+
+/* ---------- log ---------- */
+.sg-log {
+  padding: 12px 12px 6px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  background:
+    radial-gradient(420px 220px at 100% 0%, rgba(242, 220, 168, .22), transparent 70%),
+    #FBF7F0;
+}
+
+.sg-msg { display: flex; animation: sgIn .34s cubic-bezier(.22,1,.36,1) both; }
+.sg-msg.is-user { justify-content: flex-end; }
+@keyframes sgIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+
+.sg-bubble {
+  max-width: 88%;
+  padding: 9px 11px;
+  border-radius: 14px;
+  font-size: 10.4px;
+  line-height: 1.55;
+  color: #241F19;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(60, 40, 18, .08);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.sg-bubble b { font-weight: 800; }
+.sg-msg.is-user .sg-bubble {
+  background: #17140F;
+  color: #F6EFE2;
+  border-bottom-right-radius: 5px;
+}
+.sg-msg.is-bot .sg-bubble { border-bottom-left-radius: 5px; }
+
+.sg-form {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 10px;
+  border-top: 1px solid rgba(29, 28, 27, .08);
+  background: #FFFDF9;
+}
+.sg-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 11px;
+  border: 1px solid rgba(29, 28, 27, .12);
+  border-radius: 11px;
+  background: #fff;
+  font: inherit;
+  font-size: 10.4px;
+  color: #241F19;
+}
+.sg-input:focus { outline: 2px solid rgba(199, 154, 74, .45); outline-offset: 1px; }
+.sg-send {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border: 0; border-radius: 11px;
+  background: linear-gradient(180deg, #F2DCA8, #D9B26C);
+  color: #241B0C;
+  cursor: pointer;
+  transition: transform .16s ease;
+}
+.sg-send:active { transform: scale(.95); }
+.sg-send svg { width: 15px; height: 15px; }
+
+.sg-foot {
+  margin: 0;
+  padding: 0 12px 9px;
+  font-size: 7.2px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: #A3968A;
+  background: #FFFDF9;
+}
+
+/* ---------- dark ---------- */
+html[data-theme="dark"] .sg-panel { background: #16130F; box-shadow: 0 26px 60px rgba(0, 0, 0, .7); }
+html[data-theme="dark"] .sg-log { background: radial-gradient(420px 220px at 100% 0%, rgba(226,190,110,.10), transparent 70%), #12100E; }
+html[data-theme="dark"] .sg-bubble { background: #201C17; color: #F3EEE6; box-shadow: none; }
+html[data-theme="dark"] .sg-msg.is-user .sg-bubble { background: linear-gradient(180deg, #F2D9A6, #D9B26C); color: #241B0C; }
+html[data-theme="dark"] .sg-form { background: #16130F; border-color: rgba(255, 246, 235, .08); }
+html[data-theme="dark"] .sg-input { background: rgba(255, 248, 238, .05); border-color: rgba(255, 246, 235, .10); color: #F3EEE6; }
+html[data-theme="dark"] .sg-foot { background: #16130F; color: #7E7365; }
+html[data-theme="dark"] .sg-launch { box-shadow: 0 12px 30px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(242, 220, 168, .28); }
+
+/* ---------- discover minimise (markets) ---------- */
+.nl-section-head .nl-collapse {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+  border: 1px solid rgba(29, 28, 27, .12);
+  border-radius: 9px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform .22s ease, background .2s ease;
+  flex: 0 0 auto;
+}
+.nl-section-head .nl-collapse svg { width: 13px; height: 13px; }
+.nl-market-section.is-collapsed .nl-market-list,
+.nl-market-section.is-collapsed .nl-filter-row { display: none; }
+.nl-market-section.is-collapsed .nl-collapse { transform: rotate(180deg); }
+
+.nl-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 8px;
+  padding: 7px 11px;
+  border: 1px solid rgba(29, 28, 27, .12);
+  border-radius: 9px;
+  background: #fff;
+  font-size: 8.6px;
+  font-weight: 780;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .nl-section-head .nl-collapse,
+html[data-theme="dark"] .nl-jump { background: rgba(255, 248, 238, .05); border-color: rgba(255, 246, 235, .10); color: #F3EEE6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sg-panel, .sg-launch, .sg-msg { transition: none; animation: none; }
+  .sg-root.is-thinking .sg-led, .sg-root.is-thinking .sg-launch-led { animation: none; opacity: 1; }
+}
+
+/* round 26 — draggable panel */
+.sg-head { cursor: grab; touch-action: none; user-select: none; }
+.sg-panel.is-dragging { cursor: grabbing; transition: none !important; }
+.sg-panel.is-dragging .sg-head { cursor: grabbing; }
+.sg-grip {
+  margin-left: auto;
+  font-size: 12px;
+  letter-spacing: -2px;
+  color: rgba(246, 239, 226, .45);
+  padding: 0 2px;
+}
+.sg-reset {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(246, 239, 226, .12);
+  color: rgba(246, 239, 226, .75);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+.sg-reset:hover { background: rgba(246, 239, 226, .22); }

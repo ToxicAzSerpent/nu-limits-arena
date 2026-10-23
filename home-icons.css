@@ -1,0 +1,40 @@
+/* ==========================================================
+   NU LIMITS — HOME ACTION ICONS  (round 3)
+   Black icon tiles with detailed line-art for the four
+   "Build your empire" cards. Loaded after home-redesign.css.
+   ========================================================== */
+
+.action-card .action-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  margin-bottom: 17px;
+  border-radius: 14px;
+  color: #FFFFFF;
+  background: linear-gradient(150deg, #33302B 0%, #1B1916 52%, #0E0D0B 100%);
+  box-shadow:
+    0 6px 16px rgba(24, 18, 12, .26),
+    0 1px 0 rgba(255, 255, 255, .10) inset,
+    0 -1px 0 rgba(0, 0, 0, .30) inset;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.action-card .action-icon svg {
+  display: block;
+  width: 23px;
+  height: 23px;
+  overflow: visible;
+}
+
+.action-card:hover .action-icon {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow:
+    0 8px 20px rgba(24, 18, 12, .32),
+    0 1px 0 rgba(255, 255, 255, .12) inset;
+}
+
+@media (max-width: 380px) {
+  .action-card .action-icon { width: 40px; height: 40px; border-radius: 13px; }
+  .action-card .action-icon svg { width: 21px; height: 21px; }
+}

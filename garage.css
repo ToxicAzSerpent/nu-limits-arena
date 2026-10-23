@@ -1,0 +1,174 @@
+/* ==========================================================
+   NU LIMITS — GARAGE & WARDROBE  (round 7)
+   Purchases get a home outside the store.
+   Cards reuse the .mn-* (assets) and .sh-* (retail) styling.
+   ========================================================== */
+
+.gr-page { max-width: 960px; }
+
+.gr-head { margin-bottom: 14px; }
+.gr-head h1 { margin: 0 0 8px; }
+.gr-head .muted { margin: 0; max-width: 46ch; }
+
+.gr-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, .92);
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(247, 240, 231, .86));
+  box-shadow: 0 8px 22px rgba(74, 54, 35, .07);
+}
+.gr-stats span { display: grid; gap: 3px; min-width: 0; }
+.gr-stats small { color: #9a8e81; font-size: 7px; letter-spacing: .7px; font-weight: 750; }
+.gr-stats strong {
+  font-size: 12.5px;
+  font-weight: 850;
+  letter-spacing: -.2px;
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gr-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+.gr-tabs button {
+  flex: 0 0 auto;
+  padding: 9px 14px;
+  border: 1px solid rgba(29, 28, 27, .07);
+  border-radius: 999px;
+  background: #F2ECE3;
+  color: #81766E;
+  font-size: 10.5px;
+  font-weight: 820;
+  cursor: pointer;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.gr-tabs button.active {
+  background: #17150F;
+  border-color: #17150F;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(29, 28, 27, .18);
+}
+
+.gr-empty {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 40px 20px;
+  border: 1px dashed rgba(36, 35, 33, .2);
+  border-radius: 20px;
+  text-align: center;
+  color: #81766E;
+}
+.gr-empty strong { color: #2b2722; font-size: 14px; }
+.gr-empty p { margin: 0; font-size: 11.5px; max-width: 32ch; }
+.gr-empty button {
+  margin-top: 4px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 11px;
+  background: #17150F;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* a compact note strip used on both pages */
+.gr-note {
+  margin: 0 0 14px;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #F4EEE5;
+  color: #81766E;
+  font-size: 9.5px;
+  font-weight: 650;
+}
+.gr-note b { color: #1D1C1B; }
+
+/* ---------- scrollable filter tabs ---------- */
+.gr-tabs { overflow-x: auto; scrollbar-width: none; }
+.gr-tabs::-webkit-scrollbar { display: none; }
+.gr-tabs button { flex: 0 0 auto; padding: 9px 13px; white-space: nowrap; }
+
+/* ---------- the "paid with" strip on a garage card ---------- */
+.gr-used {
+  margin: 0;
+  padding: 9px 13px 10px;
+  border-top: 1px solid rgba(29, 28, 27, .07);
+  color: #8b8074;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .25px;
+  background: #FFFDF9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gr-used.inline {
+  border-top: 0;
+  padding: 0;
+  margin: 2px 0 0;
+  background: none;
+  font-size: 8px;
+  line-height: 1.4;
+  color: #9a8e81;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* ---------- wardrobe house groups ---------- */
+.gr-house { margin: 0 0 22px; }
+.gr-house-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(29, 28, 27, .08);
+}
+.gr-house-head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: -.3px;
+}
+.gr-house-head span {
+  color: #9a8e81;
+  font-size: 9px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- page actions ---------- */
+.gr-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+.gr-actions .secondary-button { margin: 0; }
+
+@media (max-width: 380px) {
+  .gr-stats { grid-template-columns: 1fr 1fr; row-gap: 10px; }
+  .gr-actions { grid-template-columns: 1fr; }
+}
+
+.gr-actions .secondary-button {
+  padding: 13px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}

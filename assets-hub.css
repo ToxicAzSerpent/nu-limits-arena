@@ -1,0 +1,172 @@
+/* ==========================================================
+   NU LIMITS — EMPIRE ASSETS  (round 5)
+   Properties hub: mansions, cars, bikes, jets, yachts,
+   islands, hangars + the collection of everything owned.
+   Extends the round-4 mansion styles.
+   ========================================================== */
+
+/* ---------- category rail ---------- */
+.mn-cats {
+  display: flex;
+  gap: 7px;
+  margin: 0 -2px 14px;
+  padding: 2px 2px 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.mn-cats::-webkit-scrollbar { display: none; }
+
+.mn-cats button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border: 1px solid #E7DED3;
+  border-radius: 999px;
+  background: rgba(255, 253, 249, .8);
+  color: #6f6459;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+}
+.mn-cats button:active { transform: scale(.96); }
+.mn-cats button.active {
+  background: #17150F;
+  border-color: #17150F;
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(23, 21, 15, .22);
+}
+.mn-cats button b {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #EFE7DD;
+  color: #4c433a;
+  font-size: 8.5px;
+  font-weight: 850;
+}
+.mn-cats button.active b { background: rgba(255, 255, 255, .18); color: #fff; }
+
+/* ---------- gate notice ---------- */
+.mn-gate {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border: 1px solid #F0DCC4;
+  border-radius: 15px;
+  background: #FFF6EA;
+  color: #8a4a12;
+  font-size: 10.5px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+.mn-gate svg { flex: 0 0 auto; width: 18px; height: 18px; }
+.mn-gate span { flex: 1 1 auto; }
+.mn-gate button {
+  flex: 0 0 auto;
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 9px;
+  background: #17150F;
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.mn-gate.ok {
+  border-color: #CBE6D7;
+  background: #EDF7F1;
+  color: #1c6b4e;
+}
+
+/* ---------- shapes ---------- */
+.mn-card.wide .mn-photo { aspect-ratio: 4 / 3; }
+.mn-card.wide .mn-body h3 { font-size: 18px; }
+.mn-card.wide .mn-price { font-size: 15.5px; }
+.mn-card.wide .mn-facts { gap: 6px 10px; margin-top: 9px; }
+
+.mn-cat-tag {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .9);
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+
+/* ---------- locked ---------- */
+.mn-state.locked { background: #F1E7DA; color: #8a4a12; }
+
+.mn-lock-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0 0 2px;
+  color: #9a6a35;
+  font-size: 9px;
+  font-weight: 700;
+  grid-column: 1 / -1;
+}
+.mn-lock-note svg { width: 12px; height: 12px; }
+
+.mn-card.locked .mn-photo { filter: saturate(.72); }
+.mn-card.locked .mn-price { color: rgba(255, 255, 255, .82); }
+
+/* ---------- section label between chips and grid ---------- */
+.mn-section-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 2px 0 10px;
+}
+.mn-section-label strong {
+  font-size: 13.5px;
+  font-weight: 850;
+  letter-spacing: -.2px;
+}
+.mn-section-label small {
+  color: #9a8e81;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+/* ---------- collection empty ---------- */
+.mn-collection-empty {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 42px 20px;
+  border: 1px dashed rgba(36, 35, 33, .2);
+  border-radius: 22px;
+  text-align: center;
+  color: #81766E;
+}
+.mn-collection-empty strong { color: #2b2722; font-size: 14px; }
+.mn-collection-empty p { margin: 0; font-size: 11.5px; max-width: 34ch; }
+.mn-collection-empty button {
+  margin-top: 6px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #17150F;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}

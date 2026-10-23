@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FCF9F5">
+  <meta name="description" content="Nu Limits — Your vision. Your empire. No limits.">
+  <title>Nu Limits | Business Empire</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home-redesign.css">
+  <link rel="stylesheet" href="invest-live.css">
+  <link rel="stylesheet" href="home-icons.css">
+  <link rel="stylesheet" href="properties.css">
+  <link rel="stylesheet" href="assets-hub.css">
+  <link rel="stylesheet" href="cars.css">
+  <link rel="stylesheet" href="cardpick.css">
+  <link rel="stylesheet" href="sagittarius.css">
+  <link rel="stylesheet" href="university.css">
+  <link rel="stylesheet" href="jobs.css">
+  <link rel="stylesheet" href="creator-badges.css">
+  <link rel="stylesheet" href="ventures.css">
+  <link rel="stylesheet" href="logistics.css">
+  <link rel="stylesheet" href="games.css">
+  <link rel="stylesheet" href="coffee.css">
+  <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="shopapp.css">
+  <link rel="stylesheet" href="wallet.css">
+  <link rel="stylesheet" href="garage.css">
+  <link rel="stylesheet" href="transactions.css">
+  <link rel="stylesheet" href="creator.css">
+  <link rel="stylesheet" href="restaurant.css">
+  <link rel="stylesheet" href="free-mode.css">
+  <link rel="stylesheet" href="bank.css">
+  <link rel="stylesheet" href="family.css">
+  <link rel="stylesheet" href="theme-dark.css">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="theme-blush.css">
+  <link rel="stylesheet" href="theme-noir.css">
+  <script>
+    /* set the theme before the first paint so there is no white flash */
+    (function () {
+      try {
+        var key = localStorage.getItem("nuLimitsTheme_v1") || "blush";
+        var dark = key === "dark" ||
+          (key === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : (key === "light" ? "light" : "blush");
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", dark ? "#12100e" : key === "light" ? "#f5f0e9" : "#f4eae4");
+      } catch (err) { /* first run */ }
+    })();
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      
+<a class="brand" href="#home" aria-label="Nu Limits home">
+  <span class="brand-lockup">
+    <img src="images/nu-limits-mark-light.png" alt="" aria-hidden="true" class="brand-mark-img brand-mark-img-light">
+    <img src="images/nu-limits-mark-dark.png" alt="" aria-hidden="true" class="brand-mark-img brand-mark-img-dark">
+    <img src="images/nu-limits-word-light.png" alt="Nu Limits" class="brand-word-img brand-word-img-light">
+    <img src="images/nu-limits-word-dark.png" alt="" aria-hidden="true" class="brand-word-img brand-word-img-dark">
+  </span>
+</a>
+
+      <button class="icon-button" id="notifications" aria-label="Notifications">
+        <span>♧</span>
+      </button>
+    </header>
+
+    <main id="main-content">
+      <section class="welcome">
+        <p class="eyebrow">Empire created by Obey</p>
+        <h1>Think bigger.<br><span>Build limitless.</span></h1>
+        <p class="muted">Your vision. Your empire. No limits.</p>
+      </section>
+
+      <button class="nl-qualbadge" id="nl-qualbadge" type="button" data-page="university" aria-label="Your highest qualification">
+        <span class="nqb-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2.6 9 9.4-4 9.4 4L12 13 2.6 9Z"/><path d="M6.6 11v5c0 1.5 2.4 3 5.4 3s5.4-1.5 5.4-3v-5"/></svg></span>
+        <span class="nqb-body">
+          <span class="nqb-label">QUALIFICATION</span>
+          <strong id="nl-qualbadge-title">No qualification yet</strong>
+          <small id="nl-qualbadge-sub">Graduate at University Road to unlock the jobs board</small>
+        </span>
+        <span class="nqb-arrow" aria-hidden="true">↗</span>
+      </button>
+
+     
+<div class="wallet-stack nl-wallet" id="wallet-stack">
+
+  <div class="nl-datebar">
+    <span class="nl-datebar-icon" aria-hidden="true">✦</span>
+    <span class="nl-datebar-date" id="game-date">Thursday · 1 January 2026</span>
+    <span class="nl-datebar-day" id="game-day">DAY 1</span>
+  </div>
+
+  <div class="nl-deck" id="nl-deck">
+
+    <!-- DEBIT -->
+    <button class="nl-card nl-card-debit is-front" type="button" data-card="debit" aria-pressed="true" aria-label="Debit card">
+      <span class="nl-card-sheen" aria-hidden="true"></span>
+      <span class="nl-card-top">
+        <span class="nl-card-brand" aria-label="Nu Limits">
+          <img src="images/nu-limits-mark-dark.png" alt="" aria-hidden="true" class="nl-card-mark">
+          <img src="images/nu-limits-word-dark.png" alt="NU LIMITS" class="nl-card-word">
+        </span>
+        <span class="nl-card-kind">DEBIT</span>
+      </span>
+      <span class="nl-card-mid">
+        <span class="nl-chip" aria-hidden="true">
+          <svg viewBox="0 0 30 22" fill="none">
+            <rect x=".8" y=".8" width="28.4" height="20.4" rx="4" fill="url(#chipg)" stroke="#9A7B3F" stroke-width=".8"/>
+            <path d="M10.5 1v20M19.5 1v20M1 7.5h9.5M19.5 7.5H29M1 14.5h9.5M19.5 14.5H29" stroke="#9A7B3F" stroke-width=".8"/>
+            <defs><linearGradient id="chipg" x1="0" y1="0" x2="30" y2="22">
+              <stop stop-color="#E9CE93"/><stop offset=".5" stop-color="#CBA763"/><stop offset="1" stop-color="#9C7A3C"/>
+            </linearGradient></defs>
+          </svg>
+        </span>
+        <span class="nl-wave" aria-hidden="true">
+          <svg viewBox="0 0 18 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M3 6.5a7 7 0 0 1 0 7"/><path d="M7 4a11 11 0 0 1 0 12"/><path d="M11 1.5a15 15 0 0 1 0 17"/>
+          </svg>
+        </span>
+        <span class="nl-card-balance">
+          <small>TOTAL NET WORTH</small>
+          <strong id="balance">R 100,000</strong>
+        </span>
+      </span>
+      <span class="nl-card-number">••••&nbsp; ••••&nbsp; ••••&nbsp; 4821</span>
+      <span class="nl-card-foot">
+        <span class="nl-card-holder"><small>CARD HOLDER</small>OBEY S.</span>
+        <span class="nl-card-exp"><small>VALID THRU</small>09/29</span>
+        <span class="nl-card-net" aria-hidden="true">
+          <svg viewBox="0 0 34 22" fill="none"><circle cx="13" cy="11" r="9" fill="#FF7A1A" opacity=".92"/><circle cx="21" cy="11" r="9" fill="#FFFFFF" opacity=".55"/></svg>
+        </span>
+      </span>
+    </button>
+
+    <!-- CREDIT -->
+    <button class="nl-card nl-card-credit is-back" type="button" data-card="credit" aria-pressed="false" aria-label="Platinum credit card">
+      <span class="nl-card-sheen" aria-hidden="true"></span>
+      <span class="nl-card-top">
+        <span class="nl-card-brand" aria-label="Nu Limits">
+          <img src="images/nu-limits-mark-light.png" alt="" aria-hidden="true" class="nl-card-mark">
+          <img src="images/nu-limits-word-light.png" alt="NU LIMITS" class="nl-card-word">
+        </span>
+        <span class="nl-card-kind">PLATINUM</span>
+      </span>
+      <span class="nl-card-mid">
+        <span class="nl-chip" aria-hidden="true">
+          <svg viewBox="0 0 30 22" fill="none">
+            <rect x=".8" y=".8" width="28.4" height="20.4" rx="4" fill="url(#chipg2)" stroke="#8B857C" stroke-width=".8"/>
+            <path d="M10.5 1v20M19.5 1v20M1 7.5h9.5M19.5 7.5H29M1 14.5h9.5M19.5 14.5H29" stroke="#8B857C" stroke-width=".8"/>
+            <defs><linearGradient id="chipg2" x1="0" y1="0" x2="30" y2="22">
+              <stop stop-color="#E4DDD0"/><stop offset=".5" stop-color="#BEB3A2"/><stop offset="1" stop-color="#8B8172"/>
+            </linearGradient></defs>
+          </svg>
+        </span>
+        <span class="nl-wave" aria-hidden="true">
+          <svg viewBox="0 0 18 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M3 6.5a7 7 0 0 1 0 7"/><path d="M7 4a11 11 0 0 1 0 12"/><path d="M11 1.5a15 15 0 0 1 0 17"/>
+          </svg>
+        </span>
+        <span class="nl-card-balance nl-card-credit-balance">
+          <small>CREDIT USED</small>
+          <strong id="nl-credit-used">R 0</strong>
+        </span>
+      </span>
+      <span class="nl-card-number">••••&nbsp; ••••&nbsp; ••••&nbsp; 7734</span>
+      <span class="nl-card-foot">
+        <span class="nl-card-holder"><small>CARD HOLDER</small>OBEY S.</span>
+        <span class="nl-card-exp"><small>VALID THRU</small>11/28</span>
+        <span class="nl-card-net" aria-hidden="true">
+          <svg viewBox="0 0 34 22" fill="none"><circle cx="13" cy="11" r="9" fill="#17150F" opacity=".82"/><circle cx="21" cy="11" r="9" fill="#7A736A" opacity=".55"/></svg>
+        </span>
+      </span>
+    </button>
+
+  </div>
+
+  <div class="nl-wallet-foot">
+    <span class="nl-paywith">Paying with <b id="nl-paywith">Debit •4821</b></span>
+    <button class="nl-flip" id="nl-flip" type="button">⇄ Switch card</button>
+  </div>
+</div>
+
+<button class="bk-home-strip" id="bk-home-strip" type="button" data-page="bank" aria-label="Open Bank Corporation">
+  <span class="bk-home-crest" aria-hidden="true">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12 16 4l13 8"/><path d="M6 12v13M12 12v13M20 12v13M26 12v13"/><path d="M3 27h26"/><path d="M3 9h26"/>
+    </svg>
+  </span>
+  <span class="bk-home-text">
+    <small>BANK CORPORATION</small>
+    <strong id="bk-home-line">No borrowing · score 642 · Fair</strong>
+  </span>
+  <span class="bk-home-badge is-clear" id="bk-home-badge">Clear</span>
+</button>
+
+<div class="earn-click-card">
+  <div class="earn-click-info">
+    <span class="earn-click-icon">✦</span>
+    <div>
+      <p class="eyebrow">QUICK EARNINGS</p>
+      <h3>Earn Per Click</h3>
+      <p class="earn-click-description">Tap to grow your empire</p>
+    </div>
+  </div>
+
+  <button id="earn-click-button" class="earn-click-button" type="button">
+    <span>＋</span>
+    Earn R 15
+  </button>
+</div>
+
+      <section class="section-block tx-section">
+        <div class="tx-panel" id="tx-panel">
+
+          <button class="tx-head" id="transaction-toggle" type="button"
+                  aria-expanded="false" aria-controls="transaction-history">
+            <span class="tx-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7h13l-3-3"/><path d="M20 17H7l3 3"/>
+              </svg>
+            </span>
+            <span class="tx-title">Transactions</span>
+            <span class="tx-count" id="transaction-count">0</span>
+            <span class="tx-chev" id="transaction-toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                   stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </span>
+          </button>
+
+          <div class="tx-body">
+            <div id="transaction-history" aria-live="polite">
+              <p class="tx-empty">Your transactions will appear here.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR NEXT MOVE</p>
+            <h2>Build your empire</h2>
+          </div>
+          <div class="empire-tools">
+            <button class="empire-toggle" id="empire-toggle" type="button" aria-pressed="false" aria-label="Minimise shortcuts">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+              <span class="empire-toggle-label">Minimise</span>
+            </button>
+            <span class="section-symbol">↗</span>
+          </div>
+        </div>
+
+        <div class="action-grid">
+          <button class="action-card" data-page="business">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></span>
+            <span class="action-title">Business</span>
+            <span class="action-subtitle">Run your ventures</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="university">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2.6 9 9.4-4 9.4 4L12 13 2.6 9Z"/><path d="M6.6 11v5c0 1.5 2.4 3 5.4 3s5.4-1.5 5.4-3v-5"/></svg></span>
+            <span class="action-title">University Road</span>
+            <span class="action-subtitle">City · qualifications</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="jobs">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="7.6" width="18.4" height="12.2" rx="2.4"/><path d="M8.6 7.6V5.9a2 2 0 0 1 2-2h2.8a2 2 0 0 1 2 2v1.7"/><path d="M2.8 12.6h18.4"/><path d="M10.4 12.6v2.2h3.2v-2.2"/></svg></span>
+            <span class="action-title">Jobs</span>
+            <span class="action-subtitle">City · apply &amp; interview</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="invest">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 3.7v16.6h17.2"/><rect x="6.5" y="11.5" width="2.6" height="5.1" rx="1"/><path d="M7.8 9.2v2.3M7.8 16.6v2.2"/><rect x="11.1" y="9.3" width="2.6" height="5.5" rx="1"/><path d="M12.4 6.9v2.4M12.4 14.8v2.1"/><rect x="15.7" y="6.5" width="2.6" height="5.1" rx="1"/><path d="M17 4.3v2.2M17 11.6v2.1"/></svg></span>
+            <span class="action-title">Investments</span>
+            <span class="action-subtitle">Grow your capital</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="property">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.3 10.5 12 3.6l8.7 6.9"/><path d="M5.6 9.3v9.6a1.7 1.7 0 0 0 1.7 1.7h9.4a1.7 1.7 0 0 0 1.7-1.7V9.3"/><rect x="7.6" y="12.2" width="3.5" height="3.1" rx=".6"/><path d="M13.6 20.6v-4.9h3.1v4.9"/></svg></span>
+            <span class="action-title">Properties</span>
+            <span class="action-subtitle">Own the skyline</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="shop">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8.5h13l1 10.3a1.7 1.7 0 0 1-1.7 1.8H6.2a1.7 1.7 0 0 1-1.7-1.8L5.5 8.5Z"/><path d="M9.1 10.4V7.2a2.9 2.9 0 0 1 5.8 0v3.2"/><path d="m12 12.7 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z"/></svg></span>
+            <span class="action-title">Luxury Shop</span>
+            <span class="action-subtitle">Live without limits</span>
+            <span class="action-arrow">↗</span>
+          </button>
+
+          <button class="action-card" data-page="garage">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 16.9h16.8"/><path d="M5.2 16.9v-2.7l1.6-3.6a2.2 2.2 0 0 1 2-1.3h6.4a2.2 2.2 0 0 1 2 1.3l1.6 3.6v2.7"/><path d="M8.5 9.3V7.5h7v1.8"/><circle cx="8" cy="16.9" r="1.7"/><circle cx="16" cy="16.9" r="1.7"/></svg></span>
+            <span class="action-title">Garage</span>
+            <span class="action-subtitle">Park the collection</span>
+            <span class="action-arrow">↗</span>
+          </button>
+
+          <button class="action-card" data-page="wardrobe">
+            <span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4a2 2 0 0 1 2 2c0 1-.8 1.4-1.4 1.9-.4.4-.6.7-.6 1.2v.6"/><path d="m12 9.3 8.1 5.2a1.7 1.7 0 0 1-.9 3.1H4.8a1.7 1.7 0 0 1-.9-3.1L12 9.3Z"/></svg></span>
+            <span class="action-title">Wardrobe</span>
+            <span class="action-subtitle">Wear the label</span>
+            <span class="action-arrow">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EMPIRE ACTIVITY</p>
+            <h2>Your journey</h2>
+          </div>
+        </div>
+        <div class="activity-card glass-panel" id="activity">
+          <span class="activity-icon">✦</span>
+          <div>
+            <strong>Your story begins now</strong>
+            <p class="muted">Make your first move and build your future.</p>
+          </div>
+          <span class="activity-arrow">→</span>
+        </div>
+      </section>
+
+      
+
+      
+
+
+
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONTROL ROOM</p>
+            <h2>Settings</h2>
+          </div>
+        </div>
+        <div class="settings-card glass-panel">
+          <div class="settings-row theme-row">
+            <div>
+              <strong>Appearance</strong>
+              <p class="muted">Blush is the default. The original light and dark looks are still here.</p>
+            </div>
+            <div class="theme-set" role="group" aria-label="Colour theme">
+              <button type="button" data-theme-set="blush">Blush</button>
+              <button type="button" data-theme-set="light">Light</button>
+              <button type="button" data-theme-set="dark">Dark</button>
+              <button type="button" data-theme-set="noir">Noir</button>
+              <button type="button" data-theme-set="auto">Auto</button>
+            </div>
+          </div>
+          <p class="settings-hint" id="theme-hint">Blush — the default look: cream paper, dusty rose, charcoal cards.</p>
+
+          <div class="settings-row">
+            <div>
+              <strong>Creator edit mode</strong>
+              <p class="muted">Edit the NU Limits Store and every asset page — swap photos from your gallery, change names and prices, add or remove slots.</p>
+            </div>
+            <button class="edit-toggle" id="edit-mode-switch" type="button" role="switch"
+                    aria-checked="false" aria-label="Creator edit mode">
+              <span class="edit-toggle-dot" aria-hidden="true"></span>
+              <span class="edit-toggle-label">Edit Mode</span>
+            </button>
+          </div>
+          <p class="settings-hint" id="edit-mode-hint">Off — players see the buy &amp; lease view.</p>
+
+          <div class="settings-row" id="free-play-row">
+            <div>
+              <strong>Free play</strong>
+              <p class="muted">While Edit Mode is on, nothing is charged. Any business, building, car or upgrade opens without an amount in the way.</p>
+            </div>
+            <span class="free-pill" id="free-pill">Off</span>
+          </div>
+
+          <div class="settings-row capital-row">
+            <div>
+              <strong>Starting capital</strong>
+              <p class="muted">Your own opening balance for a new game — and a button to apply it right now.</p>
+            </div>
+            <div class="capital-set">
+              <input id="start-capital" type="number" min="0" step="1000" inputmode="numeric"
+                     aria-label="Starting capital">
+              <button id="start-capital-apply" type="button">Apply</button>
+            </div>
+          </div>
+          <p class="settings-hint" id="capital-hint">New games start with R 100 000. Press Apply to set your balance to it now.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="dynamic-page" hidden></div>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-page="home" aria-current="page">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></svg></span>
+        <small>Home</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="business">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></span>
+        <small>Business</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="invest">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg></span>
+        <small>Invest</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="shop">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+        <small>Shop</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="family">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17.2" cy="9.4" r="2.6"/><path d="M3.4 20c0-3.1 2.5-5.6 5.6-5.6s5.6 2.5 5.6 5.6"/><path d="M15.4 20c0-2.6 1.6-4.6 3.5-4.6 1.7 0 2.9 1.7 2.9 3.9"/></svg></span>
+        <small>Family</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="bank">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"/><path d="M5 10v9M9.5 10v9M14.5 10v9M19 10v9"/><path d="M3 21h18"/><path d="M3 7h18"/></svg></span>
+        <small>Bank</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+  <script src="script.js"></script>
+  <script src="free-mode.js" defer></script>
+  <script src="investments.js" defer></script>
+  <script src="asset-logos.js" defer></script>
+  <script src="cardpick.js" defer></script>
+  <script src="cars.js" defer></script>
+  <script src="properties.js" defer></script>
+  <script src="shop.js" defer></script>
+  <script src="shopapp.js" defer></script>
+  <script src="garage.js" defer></script>
+  <script src="world.js" defer></script>
+  <script src="creator-core.js" defer></script>
+  <script src="creator.js" defer></script>
+  <script src="creator-edit.js" defer></script>
+  <script src="restaurant-core.js" defer></script>
+  <script src="icons.js" defer></script>
+  <script src="restaurant.js" defer></script>
+  <script src="restaurant-edit.js" defer></script>
+  <script src="businesses.js" defer></script>
+  <script src="bank.js" defer></script>
+  <script src="family.js" defer></script>
+  <script src="back-nav.js" defer></script>
+  <script src="theme.js" defer></script>
+  <script src="sagittarius-core.js" defer></script>
+  <script src="sagittarius.js" defer></script>
+  <script src="university.js" defer></script>
+  <script src="jobs.js" defer></script>
+  <script src="ventures.js" defer></script>
+  <script src="logistics.js" defer></script>
+  <script src="games.js" defer></script>
+  <script src="coffee.js" defer></script>
+  <script src="creator-badges.js" defer></script>
+</body>
+</html>

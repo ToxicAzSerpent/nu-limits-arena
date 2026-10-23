@@ -1,0 +1,152 @@
+/* ==========================================================
+   PAY WITH — two small cards at the till (round 17)
+   ========================================================== */
+
+.cp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(14, 12, 10, .5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.cp-modal.show { opacity: 1; }
+
+.cp-sheet {
+  width: min(360px, 100%);
+  padding: 14px;
+  border-radius: 20px;
+  background: #FFFDF9;
+  box-shadow: 0 24px 60px rgba(20, 14, 8, .34);
+  transform: translateY(8px) scale(.985);
+  transition: transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+.cp-modal.show .cp-sheet { transform: none; }
+
+.cp-sheet header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.cp-sheet header strong { font-size: 12px; font-weight: 820; letter-spacing: .1px; }
+.cp-sheet header button {
+  width: 26px; height: 26px;
+  border: 0; border-radius: 9px;
+  background: rgba(29, 28, 27, .06);
+  font-size: 11px; cursor: pointer;
+}
+
+.cp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.cp-card {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid rgba(29, 28, 27, .10);
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.cp-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(60, 40, 20, .12); }
+.cp-card.is-on { border-color: #C79A4A; box-shadow: 0 0 0 2px rgba(199, 154, 74, .22); }
+.cp-card.is-off { opacity: .55; }
+
+/* the little card faces — deliberately small */
+.cp-face {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 46px;
+  border-radius: 9px;
+  padding: 7px 8px;
+  color: #fff;
+  overflow: hidden;
+}
+.cp-face.is-debit { background: linear-gradient(135deg, #2C2A26 0%, #4A423A 60%, #6B5B45 100%); }
+.cp-face.is-credit { background: linear-gradient(135deg, #1D1810 0%, #52401F 55%, #A9822F 100%); }
+.cp-face i {
+  display: block;
+  font-style: normal;
+  font-size: 5.6px;
+  letter-spacing: 1.1px;
+  font-weight: 800;
+  opacity: .72;
+}
+.cp-face em {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .6px;
+}
+.cp-chip {
+  display: block;
+  width: 13px; height: 10px;
+  margin-top: 5px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #F5DCA8, #C2A05C);
+}
+
+.cp-card b { margin-top: 4px; font-size: 10px; font-weight: 820; }
+.cp-card small { font-size: 7.8px; color: #8A7E71; line-height: 1.3; }
+
+.cp-note {
+  margin: 10px 2px 0;
+  font-size: 8.2px;
+  line-height: 1.45;
+  color: #8A7E71;
+}
+
+/* dark */
+html[data-theme="dark"] .cp-sheet { background: #191612; box-shadow: 0 24px 60px rgba(0, 0, 0, .66); }
+html[data-theme="dark"] .cp-card { background: rgba(255, 248, 238, .045); border-color: rgba(255, 246, 235, .09); }
+html[data-theme="dark"] .cp-card.is-on { border-color: #e2be6e; box-shadow: 0 0 0 2px rgba(226, 190, 110, .22); }
+html[data-theme="dark"] .cp-card small,
+html[data-theme="dark"] .cp-note { color: #9A8E80; }
+
+/* asset logo bits */
+.nl-mini-logo { width: 20px; height: 20px; border-radius: 7px; display: block; }
+.nl-dock-logo { width: 26px; height: 26px; border-radius: 9px; display: block; }
+
+.al-tools { display: flex; justify-content: flex-end; margin: 0 0 10px; }
+.al-tools button {
+  padding: 8px 12px;
+  border: 1px solid rgba(29, 28, 27, .14);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 9px;
+  font-weight: 780;
+  cursor: pointer;
+}
+.al-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  max-height: 56vh;
+  overflow-y: auto;
+}
+.al-cell {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  border: 1px solid rgba(29, 28, 27, .10);
+  border-radius: 11px;
+  background: #fff;
+  cursor: pointer;
+}
+.al-cell img { width: 26px; height: 26px; border-radius: 8px; }
+.al-cell b { font-size: 7.6px; font-weight: 800; letter-spacing: .3px; }
+
+html[data-theme="dark"] .al-tools button,
+html[data-theme="dark"] .al-cell { background: rgba(255, 248, 238, .05); border-color: rgba(255, 246, 235, .10); color: #f3eee6; }

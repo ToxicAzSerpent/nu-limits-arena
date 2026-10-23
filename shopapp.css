@@ -1,0 +1,618 @@
+/* ==========================================================
+   NU LIMITS STORE — ported Base44 storefront (Round 42)
+   .nsa-* — hero, panel, tiles, dialogs, bag, checkout, manage
+   Dark "void" surface by design; light/blush get tuned skins.
+   ========================================================== */
+
+.sh-page.nsa {
+  --nu-accent: #d550e5;
+  --nu-accent-deep: #a52ab8;
+  --nsa-ink: #16161d;
+  --nsa-void: #0e0e13;
+  --nsa-fog: #ffffff;
+  --nsa-muted: #a3a3b2;
+  --nsa-line: rgba(255, 255, 255, .12);
+  position: relative;
+  padding: 0 0 30px;
+  color: var(--nsa-fog);
+  isolation: isolate;
+}
+
+/* keep the game's page shells out of the way */
+.sh-page.nsa { background: var(--nsa-void); border-radius: 22px; overflow: hidden; }
+
+/* ---------------- background ---------------- */
+.nsa-hero { position: relative; min-height: 560px; padding: 0 18px 18px; overflow: hidden; }
+.nsa-bg { position: absolute; inset: 0; z-index: 0; background: var(--nsa-void); }
+.nsa-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 45%, #000 25%, transparent 100%);
+  mask-image: radial-gradient(70% 60% at 50% 45%, #000 25%, transparent 100%);
+}
+.nsa-blob { position: absolute; border-radius: 50%; filter: blur(78px); opacity: .5; }
+.nsa-blob.b1 { width: 46vw; height: 46vw; max-width: 330px; max-height: 330px; left: 4%; top: 6%; background: #c026d3; }
+.nsa-blob.b2 { width: 50vw; height: 50vw; max-width: 360px; max-height: 360px; right: -6%; top: 30%; background: #4338ca; opacity: .4; }
+.nsa-blob.b3 { width: 42vw; height: 42vw; max-width: 300px; max-height: 300px; left: 26%; bottom: -14%; background: #7e22ce; opacity: .34; }
+[data-bg="aurora"] .nsa-blob { animation: nsa-drift 20s ease-in-out infinite; }
+[data-bg="aurora"] .nsa-blob.b2 { animation-delay: -6s; }
+[data-bg="aurora"] .nsa-blob.b3 { animation-delay: -11s; }
+[data-bg="grid"] .nsa-grid { background-size: 40px 40px; opacity: .9; }
+[data-bg="ember"] .nsa-blob.b1 { background: #ea580c; }
+[data-bg="ember"] .nsa-blob.b2 { background: #c026d3; }
+.nsa-vignette { position: absolute; inset: 0; background: radial-gradient(125% 90% at 50% 0%, rgba(14,14,19,0) 30%, rgba(6,6,10,.92) 100%); }
+
+@keyframes nsa-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4%, -6%, 0) scale(1.18); }
+}
+@keyframes nsa-scan {
+  0% { transform: translateY(-140%); opacity: 0; }
+  30% { opacity: .8; }
+  100% { transform: translateY(340%); opacity: 0; }
+}
+@keyframes nsa-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- top bar ---------------- */
+.nsa-top {
+  position: relative; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px; padding: 16px 18px 8px;
+}
+.nsa-brand {
+  border: 0; background: none; padding: 0; cursor: pointer; white-space: nowrap;
+  font: inherit; font-size: 11px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: #fff;
+}
+.nsa-top-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 5px; margin-left: auto; }
+.nsa-topbtn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 7px 9px; border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.86); font: inherit; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase; cursor: pointer;
+}
+.nsa-topbtn svg { width: 13px; height: 13px; }
+.nsa-topbtn i {
+  display: grid; place-items: center; min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: 999px !important; background: var(--nu-accent); color: #fff;
+  font-size: 8.5px; font-style: normal; font-weight: 800;
+}
+.nsa-topbtn.is-edit { border-style: dashed; border-color: rgba(213,80,229,.6); color: #f2c9f8; }
+
+/* ---------------- hero ---------------- */
+.nsa-hero-type {
+  position: absolute; inset: 0; z-index: 1; display: grid; place-content: center; gap: 0;
+  pointer-events: none; text-align: center;
+}
+.nsa-hero-type span {
+  display: block; font-size: 31vw; line-height: .74;
+  font-weight: 700; letter-spacing: -.05em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.30);
+}
+
+.nsa-hero-art {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 300px; height: 380px; margin: 8px auto 0;
+  border-radius: 130px 130px 26px 26px !important;
+  overflow: hidden; border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 40px 80px -40px rgba(0,0,0,.95);
+  background: #14141a;
+}
+.nsa-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center 35%; }
+.nsa-hero-fade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.82), transparent 58%); }
+.nsa-scan {
+  position: absolute; inset-inline: 0; top: 0; height: 108px;
+  background: linear-gradient(to bottom, rgba(213,80,229,.3), rgba(213,80,229,.04), transparent);
+  animation: nsa-scan 7s ease-in-out infinite;
+}
+.nsa-hero-empty { position: absolute; inset: 0; display: grid; place-content: center; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+.nsa-hero-tools { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 3; }
+
+.nsa-feature-chip {
+  position: relative; z-index: 3; display: block; margin: -46px 0 0 auto;
+  padding: 9px 13px; border-radius: 14px !important; text-align: left; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.16); background: rgba(28,28,36,.72);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  color: #fff; font: inherit;
+}
+.nsa-feature-chip small { display: block; font-size: 8px; letter-spacing: .28em; text-transform: uppercase; color: #eda9f6; }
+.nsa-feature-chip b { display: block; margin-top: 3px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.nsa-feature-chip span { display: block; margin-top: 2px; font-size: 10px; color: rgba(255,255,255,.5); }
+
+.nsa-hero-card {
+  position: relative; z-index: 3; margin-top: 14px;
+  padding: 16px; border-radius: 24px !important;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(38,38,48,.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 40px 70px -50px #000;
+}
+.nsa-kicker { margin: 0; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--nu-accent); }
+.nsa-caption { margin: 9px 0 0; font-size: 12px; line-height: 1.55; color: rgba(255,255,255,.62); }
+.nsa-hero-card-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 15px; }
+.nsa-hero-thumb {
+  width: 54px; height: 54px; border-radius: 15px !important; border: 1px solid rgba(255,255,255,.18);
+  background-size: cover; background-position: center; cursor: pointer;
+}
+
+/* ---------------- pills ---------------- */
+.nsa-pill {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 8px 8px 20px; border: 0; border-radius: 999px !important;
+  background: var(--nu-accent); color: #fff; font: inherit;
+  font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  cursor: pointer; transition: transform .25s ease, box-shadow .25s ease;
+}
+.nsa-pill:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 0 30px rgba(213,80,229,.5); }
+.nsa-pill:disabled { opacity: .42; cursor: not-allowed; }
+.nsa-pill.is-sm { font-size: 9px; padding: 6px 6px 6px 16px; }
+.nsa-pill-ico {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(255,255,255,.18); transition: transform .3s ease;
+}
+.nsa-pill.is-sm .nsa-pill-ico { width: 24px; height: 24px; }
+.nsa-pill:hover:not(:disabled) .nsa-pill-ico { transform: rotate(45deg); }
+.nsa-pill-ico svg { width: 14px; height: 14px; }
+
+/* ---------------- inventory panel ---------------- */
+.nsa-main { position: relative; z-index: 4; padding: 14px 18px 0; }
+.nsa-panel {
+  position: relative; margin-top: 16px; padding: 18px;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255,255,255,.11);
+  background: rgba(46,46,58,.42);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 40px 80px -50px #000;
+}
+.nsa-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.nsa-panel-head span { font-size: 9px; letter-spacing: .38em; text-transform: uppercase; color: rgba(255,255,255,.82); }
+.nsa-panel-head small { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.36); }
+.nsa-panel-desc { margin: 14px 0 0; font-size: 11.5px; line-height: 1.6; color: var(--nsa-muted); }
+.nsa-panel-cta { margin-top: 14px; }
+
+.nsa-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.nsa-tile {
+  position: relative; aspect-ratio: 1 / 1; padding: 0; overflow: hidden;
+  border-radius: 20px !important; border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.05); cursor: pointer; text-align: left;
+  animation: nsa-rise .5s cubic-bezier(.16,1,.3,1) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+.nsa-tile-art {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform .7s ease;
+}
+.nsa-tile:hover .nsa-tile-art { transform: scale(1.08); }
+.nsa-tile-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.05) 62%, transparent); }
+.nsa-tile.is-out .nsa-tile-art { filter: grayscale(.7) brightness(.7); }
+.nsa-tile-txt { position: absolute; inset: auto 10px 9px 10px; display: block; }
+.nsa-tile-txt b { display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nsa-tile-txt small { display: block; margin-top: 2px; font-size: 9.5px; color: #eda9f6; }
+.nsa-tile-plus {
+  position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(255,255,255,.14); color: #fff; opacity: 0; transition: opacity .25s ease, background .25s ease;
+}
+.nsa-tile-plus svg { width: 12px; height: 12px; }
+.nsa-tile:hover .nsa-tile-plus { opacity: 1; background: var(--nu-accent); }
+.nsa-tile-tools { position: absolute; top: 6px; left: 6px; display: flex; gap: 4px; z-index: 3; }
+.nsa-badge {
+  width: 22px; height: 22px; display: grid; place-items: center;
+  border-radius: 50% !important; border: 1px solid rgba(255,255,255,.35);
+  background: rgba(16,14,18,.72); color: #fff; font: inherit; font-size: 10px;
+  line-height: 1; cursor: pointer; padding: 0;
+}
+.nsa-badge svg { width: 11px; height: 11px; }
+.nsa-owned, .nsa-sold {
+  position: absolute; top: 8px; left: 8px; z-index: 2;
+  padding: 3px 7px; border-radius: 6px !important;
+  font-size: 7.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+}
+.nsa-owned { background: rgba(47,122,95,.92); color: #fff; }
+.nsa-sold { background: rgba(0,0,0,.7); color: #f4b8b2; }
+.nsa-owned.is-inline { position: static; display: inline-block; vertical-align: middle; margin-left: 8px; }
+.nsa-tile-tools ~ .nsa-owned, .nsa-tile-tools ~ .nsa-sold { left: 8px; }
+
+.nsa-slot-add {
+  display: grid; place-content: center; gap: 3px; aspect-ratio: 1 / 1;
+  border: 1px dashed rgba(213,80,229,.55); border-radius: 20px !important;
+  background: rgba(213,80,229,.08); color: #f0bff7; font: inherit; cursor: pointer;
+}
+.nsa-slot-add .plus { display: block; font-size: 18px; }
+.nsa-slot-add b { font-size: 10px; }
+.nsa-slot-add small { font-size: 8px; opacity: .7; }
+.nsa-empty { grid-column: 1 / -1; margin: 0; padding: 22px 10px; text-align: center; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+
+.nsa-pager { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 14px; }
+.nsa-dots { display: flex; align-items: center; gap: 5px; }
+.nsa-dots button { width: 8px; height: 4px; border: 0; padding: 0; border-radius: 999px !important; background: rgba(255,255,255,.22); cursor: pointer; transition: all .3s ease; }
+.nsa-dots button.on { width: 22px; background: var(--nu-accent); }
+.nsa-arrows { display: flex; flex-direction: column; gap: 5px; }
+.nsa-arrows button {
+  width: 26px; height: 26px; border-radius: 50% !important; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.16); background: transparent; color: rgba(255,255,255,.6);
+  font: inherit; font-size: 13px; line-height: 1; display: grid; place-items: center;
+}
+.nsa-arrows button:disabled { opacity: .25; cursor: default; }
+
+.nsa-inline {
+  margin-left: 5px; padding: 2px 6px; border-radius: 999px !important;
+  border: 1px dashed rgba(213,80,229,.6); background: rgba(213,80,229,.14);
+  color: #f0bff7; font: inherit; font-size: 8px; letter-spacing: .1em;
+  text-transform: uppercase; cursor: pointer; vertical-align: middle;
+}
+
+/* ---------------- modal shell ---------------- */
+.nsa-layer { position: relative; z-index: 40; }
+
+/* overlays are appended to <body>, so the tokens live there too */
+#nsa-overlay-root {
+  --nu-accent: #d550e5;
+  --nu-accent-deep: #a52ab8;
+  --nsa-muted: #a3a3b2;
+  color: #fff;
+  font-family: inherit;
+}
+html[data-theme="blush"] #nsa-overlay-root { --nu-accent: #CE8F88; --nu-accent-deep: #B4625A; }
+.nsa-modal { position: fixed; inset: 0; z-index: 120; display: flex; align-items: center; justify-content: center; padding: 12px; }
+.nsa-modal-veil { position: absolute; inset: 0; border: 0; padding: 0; background: rgba(4,4,8,.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; }
+.nsa-modal-body {
+  position: relative; width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto;
+  border-radius: 26px !important; border: 1px solid rgba(255,255,255,.13);
+  background: rgba(30,30,38,.9);
+  backdrop-filter: blur(34px) saturate(150%);
+  -webkit-backdrop-filter: blur(34px) saturate(150%);
+  box-shadow: 0 60px 110px -50px #000;
+  color: #fff; animation: nsa-rise .35s cubic-bezier(.16,1,.3,1) both;
+}
+.nsa-modal-body::-webkit-scrollbar { width: 0; }
+.nsa-modal-x {
+  position: absolute; top: 12px; right: 12px; z-index: 5;
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 50% !important; border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.5); color: rgba(255,255,255,.75); cursor: pointer;
+}
+.nsa-modal-x svg { width: 14px; height: 14px; }
+.nsa-modal.is-collection .nsa-modal-body { max-width: 720px; }
+
+/* ---------------- product ---------------- */
+.nsa-product { display: block; }
+.nsa-product-art { position: relative; height: 300px; background-size: cover; background-position: center 30%; }
+.nsa-product-fade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,20,26,.98), rgba(20,20,26,.05) 60%); }
+.nsa-product-tools { position: absolute; top: 12px; left: 12px; display: flex; gap: 5px; }
+.nsa-product-side { padding: 18px 18px 22px; }
+.nsa-product-side h2 { margin: 8px 0 0; font-size: 25px; line-height: 1.05; letter-spacing: -.02em; text-transform: uppercase; }
+.nsa-product-price { margin: 8px 0 0; font-size: 15px; color: rgba(255,255,255,.78); }
+.nsa-product-desc { margin: 12px 0 0; font-size: 12px; line-height: 1.6; color: var(--nsa-muted); }
+.nsa-label { margin: 16px 0 7px; font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.42); }
+.nsa-size-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.nsa-size-row button {
+  min-width: 42px; padding: 8px 12px; border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,.16); background: transparent;
+  color: rgba(255,255,255,.66); font: inherit; font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+}
+.nsa-size-row button.on { border-color: var(--nu-accent); background: var(--nu-accent); color: #fff; }
+.nsa-buy-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.nsa-qty {
+  display: inline-flex; align-items: center; gap: 2px; padding: 4px;
+  border-radius: 999px !important; border: 1px solid rgba(255,255,255,.16);
+}
+.nsa-qty button { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 50% !important; background: transparent; color: rgba(255,255,255,.7); cursor: pointer; }
+.nsa-qty button svg { width: 12px; height: 12px; }
+.nsa-qty span { min-width: 22px; text-align: center; font-size: 12px; }
+.nsa-fine { margin: 12px 0 0; font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.34); }
+
+/* ---------------- collection ---------------- */
+.nsa-collection { padding: 20px 18px 24px; }
+.nsa-collection h2 { margin: 8px 0 0; font-size: 26px; text-transform: uppercase; letter-spacing: -.02em; }
+.nsa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.nsa-chips button {
+  padding: 7px 12px; border-radius: 999px !important; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.15); background: transparent;
+  color: rgba(255,255,255,.6); font: inherit; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase;
+}
+.nsa-chips button.on { border-color: var(--nu-accent); background: var(--nu-accent); color: #fff; }
+.nsa-grid-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.nsa-card {
+  position: relative; padding: 0; overflow: hidden; text-align: left; cursor: pointer;
+  border-radius: 18px !important; border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.05); color: #fff; font: inherit;
+}
+.nsa-card-art { display: block; aspect-ratio: 1 / 1; background-size: cover; background-position: center; transition: transform .6s ease; }
+.nsa-card:hover .nsa-card-art { transform: scale(1.06); }
+.nsa-card.is-out .nsa-card-art { filter: grayscale(.7) brightness(.72); }
+.nsa-card-txt { display: block; padding: 9px 10px 11px; }
+.nsa-card-txt b { display: block; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nsa-card-txt small { display: block; margin-top: 3px; font-size: 9.5px; color: #eda9f6; }
+
+/* ---------------- bag drawer ---------------- */
+.nsa-modal.is-drawer { align-items: stretch; justify-content: flex-end; padding: 0; }
+.nsa-modal.is-drawer .nsa-modal-x { display: none; }
+.nsa-modal.is-drawer .nsa-modal-body {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  max-width: 380px; height: auto; max-height: none; border-radius: 0 !important;
+  display: flex; flex-direction: column; animation: nsa-slide .3s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes nsa-slide { from { transform: translateX(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+.nsa-drawer { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.nsa-drawer-head { flex: 0 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 52px 18px 12px; }
+.nsa-drawer-head small { font-size: 8.5px; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.42); }
+.nsa-drawer-head h3 { margin: 5px 0 0; font-size: 20px; text-transform: uppercase; letter-spacing: -.01em; }
+.nsa-drawer-head button { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50% !important; border: 1px solid rgba(255,255,255,.18); background: transparent; color: rgba(255,255,255,.7); cursor: pointer; }
+.nsa-drawer-head button svg { width: 13px; height: 13px; }
+.nsa-drawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px 18px 14px; }
+.nsa-drawer-body::-webkit-scrollbar { width: 0; }
+.nsa-drawer-empty { display: grid; place-content: center; gap: 14px; justify-items: center; padding: 70px 0; text-align: center; }
+.nsa-drawer-empty p { margin: 0; font-size: 12px; color: var(--nsa-muted); }
+.nsa-line { display: flex; gap: 10px; padding: 9px; margin-bottom: 8px; border-radius: 16px !important; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); }
+.nsa-line-art { width: 56px; height: 72px; flex: 0 0 56px; border-radius: 11px !important; background-size: cover; background-position: center; }
+.nsa-line-txt { flex: 1; min-width: 0; }
+.nsa-line-txt b { display: block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nsa-line-txt small { display: block; margin-top: 3px; font-size: 9.5px; color: rgba(255,255,255,.42); }
+.nsa-line-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.nsa-line-row b { font-size: 10.5px; }
+.nsa-line-qty { display: inline-flex; align-items: center; gap: 4px; }
+.nsa-line-qty button { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50% !important; border: 1px solid rgba(255,255,255,.18); background: transparent; color: rgba(255,255,255,.72); cursor: pointer; }
+.nsa-line-qty button svg { width: 10px; height: 10px; }
+.nsa-line-qty span { min-width: 14px; text-align: center; font-size: 11px; }
+.nsa-line-del { width: 22px; height: 22px; display: grid; place-items: center; border: 0; border-radius: 50% !important; background: rgba(255,255,255,.06); color: rgba(255,255,255,.5); cursor: pointer; }
+.nsa-line-del svg { width: 10px; height: 10px; }
+.nsa-drawer-foot { flex: 0 0 auto; padding: 14px 18px 26px; border-top: 1px solid rgba(255,255,255,.1); background: rgba(24,24,31,.96); }
+.nsa-sub { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(255,255,255,.6); }
+.nsa-sub b { color: #fff; font-size: 14px; }
+.nsa-drawer-foot .nsa-pill { width: 100%; margin-top: 12px; }
+
+/* ---------------- checkout ---------------- */
+.nsa-modal.is-checkout .nsa-modal-body { max-width: 620px; }
+.nsa-checkout { display: grid; gap: 16px; padding: 20px 18px 24px; }
+.nsa-checkout h2 { margin: 7px 0 14px; font-size: 22px; text-transform: uppercase; }
+.nsa-checkout-form label { display: block; margin-bottom: 10px; }
+.nsa-checkout-form label span { display: block; margin-bottom: 5px; font-size: 8.5px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.42); }
+.nsa-checkout input, .nsa-checkout textarea {
+  width: 100%; padding: 11px 13px; border-radius: 14px !important;
+  border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06);
+  color: #fff; font: inherit; font-size: 12px; outline: none; resize: none;
+}
+.nsa-checkout input::placeholder, .nsa-checkout textarea::placeholder { color: rgba(255,255,255,.26); }
+.nsa-checkout input:focus, .nsa-checkout textarea:focus { border-color: var(--nu-accent); }
+.nsa-error { margin: 4px 0 0; font-size: 11px; color: #f2a3a3; }
+.nsa-checkout-side { padding: 16px; border-radius: 20px !important; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); }
+.nsa-checkout-side ul { list-style: none; margin: 8px 0 0; padding: 0; }
+.nsa-checkout-side li { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; font-size: 11px; color: rgba(255,255,255,.7); }
+.nsa-checkout-side li b { white-space: nowrap; color: #fff; }
+.nsa-checkout-side .nsa-sub { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); }
+.nsa-checkout-side .nsa-pill { width: 100%; margin-top: 14px; }
+.nsa-placed { display: grid; justify-items: center; gap: 12px; padding: 34px 22px 40px; text-align: center; }
+.nsa-tick { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: var(--nu-accent); color: #fff; font-size: 22px; }
+.nsa-placed h2 { margin: 0; font-size: 24px; text-transform: uppercase; }
+.nsa-placed p { margin: 0; max-width: 280px; font-size: 12px; line-height: 1.6; color: var(--nsa-muted); }
+.nsa-ref { padding: 12px 22px; border-radius: 18px !important; border: 1px solid rgba(255,255,255,.16); }
+.nsa-ref small { display: block; font-size: 8px; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.42); }
+.nsa-ref b { display: block; margin-top: 4px; font-size: 18px; letter-spacing: .18em; }
+.nsa-ref span { display: block; margin-top: 3px; font-size: 13px; color: #eda9f6; }
+
+/* ---------------- orders ---------------- */
+.nsa-orders { padding: 20px 18px 26px; }
+.nsa-orders h2 { margin: 7px 0 16px; font-size: 24px; text-transform: uppercase; }
+.nsa-order { padding: 12px; margin-bottom: 9px; border-radius: 16px !important; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); }
+.nsa-order-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.nsa-order-head b { font-size: 11px; letter-spacing: .16em; }
+.nsa-order-head span { font-size: 12px; color: #eda9f6; }
+.nsa-order p { margin: 7px 0 0; font-size: 11px; line-height: 1.5; color: rgba(255,255,255,.62); }
+.nsa-order small { display: block; margin-top: 5px; font-size: 8.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.34); }
+
+/* ---------------- manage ---------------- */
+.nsa-modal.is-manage .nsa-modal-body { max-width: 620px; }
+.nsa-manage { padding: 20px 18px 26px; }
+.nsa-manage h2 { margin: 7px 0 16px; font-size: 24px; text-transform: uppercase; }
+.nsa-manage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.nsa-manage-grid label { display: block; }
+.nsa-manage-grid label.wide { grid-column: 1 / -1; }
+.nsa-manage-grid label span { display: block; margin-bottom: 4px; font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.42); }
+.nsa-manage-grid input, .nsa-manage-grid textarea {
+  width: 100%; padding: 9px 11px; border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06);
+  color: #fff; font: inherit; font-size: 11.5px; outline: none; resize: none;
+}
+.nsa-manage-grid input:focus, .nsa-manage-grid textarea:focus { border-color: var(--nu-accent); }
+.nsa-bgs { display: flex; gap: 6px; margin-top: 4px; }
+.nsa-bgs button { padding: 7px 12px; border-radius: 999px !important; border: 1px solid rgba(255,255,255,.15); background: transparent; color: rgba(255,255,255,.6); font: inherit; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; }
+.nsa-bgs button.on { border-color: var(--nu-accent); background: var(--nu-accent); color: #fff; }
+.nsa-manage-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; }
+.nsa-manage-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.nsa-manage-list li { display: flex; align-items: center; gap: 9px; padding: 8px; margin-bottom: 7px; border-radius: 14px !important; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); flex-wrap: wrap; }
+.nsa-manage-art { width: 38px; height: 48px; flex: 0 0 38px; border-radius: 9px !important; background-size: cover; background-position: center; }
+.nsa-manage-txt { flex: 1; min-width: 110px; }
+.nsa-manage-txt b { display: block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.nsa-manage-txt small { display: block; margin-top: 3px; font-size: 9px; color: rgba(255,255,255,.42); }
+.nsa-manage-actions { display: flex; gap: 4px; flex-wrap: wrap; }
+.nsa-mini { padding: 5px 9px; border-radius: 999px !important; border: 1px solid rgba(255,255,255,.18); background: transparent; color: rgba(255,255,255,.72); font: inherit; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.nsa-mini.danger { border-color: rgba(242,163,163,.5); color: #f2a3a3; }
+.nsa-manage-foot { margin-top: 14px; }
+.nsa-manage-foot .nsa-pill { width: 100%; }
+
+/* ---------------- edit bar + back ---------------- */
+.nsa-editbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin: 14px 18px 0; padding: 9px 12px; border-radius: 14px !important;
+  border: 1px dashed rgba(213,80,229,.55); background: rgba(213,80,229,.1);
+  color: #f0bff7; font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
+}
+.nsa-editbar button { padding: 5px 10px; border-radius: 999px !important; border: 0; background: var(--nu-accent); color: #fff; font: inherit; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.nsa-back { margin: 16px 18px 0; }
+
+/* ==========================================================
+   LIGHT THEME — the store keeps its dark hero on the shelf,
+   but the page shell sits on the light surface.
+   ========================================================== */
+html[data-theme="light"] .sh-page.nsa { background: var(--nsa-void); }
+html[data-theme="light"] .nsa-top { color: #fff; }
+
+/* BLUSH keeps the same dark storefront, blush accents */
+html[data-theme="blush"] .sh-page.nsa {
+  --nu-accent: #CE8F88;
+  --nu-accent-deep: #B4625A;
+}
+html[data-theme="blush"] .nsa-kicker,
+html[data-theme="blush"] .nsa-tile-txt small,
+html[data-theme="blush"] .nsa-card-txt small,
+html[data-theme="blush"] .nsa-ref span { color: #E3B3AD; }
+html[data-theme="blush"] .nsa-topbtn i { background: #CE8F88; }
+
+@media (min-width: 760px) {
+  .nsa-hero-type span { font-size: 12.5vw; }
+  .nsa-hero { min-height: 640px; }
+  .nsa-hero-art { max-width: 360px; height: 470px; }
+  .nsa-slots { grid-template-columns: repeat(4, 1fr); }
+  .nsa-product { display: grid; grid-template-columns: 1.05fr 1fr; }
+  .nsa-product-art { height: auto; min-height: 460px; }
+  .nsa-modal-body { max-width: 820px; }
+  .nsa-modal.is-collection .nsa-modal-body { max-width: 900px; }
+  .nsa-grid-cards { grid-template-columns: repeat(3, 1fr); }
+  .nsa-checkout { grid-template-columns: 1.1fr 1fr; }
+}
+
+/* ==========================================================
+   FULL PAGE — the storefront takes the whole screen instead
+   of sitting in a rounded window inside the Shop page.
+   ========================================================== */
+body.nsa-immersive { overflow: hidden; background: #0e0e13 !important; }
+body.nsa-immersive::before { display: none !important; }
+body.nsa-immersive .topbar,
+body.nsa-immersive .bottom-nav,
+body.nsa-immersive .nl-back,
+body.nsa-immersive .back-bar,
+body.nsa-immersive .nav-underlay { display: none !important; }
+
+body.nsa-immersive #main-content { display: none !important; }
+body.nsa-immersive #dynamic-page {
+  position: fixed; inset: 0; z-index: 90;
+  margin: 0; padding: 0; overflow-y: auto; overflow-x: hidden;
+  background: #0e0e13;
+  -webkit-overflow-scrolling: touch;
+}
+body.nsa-immersive .sh-page.nsa {
+  min-height: 100%;
+  border-radius: 0 !important;
+  margin: 0; padding: 0;
+  background: #0e0e13;
+}
+body.nsa-immersive .sh-page.nsa .nsa-top {
+  position: sticky; top: 0; z-index: 25;
+  padding: 14px 16px 10px;
+  background: linear-gradient(to bottom, rgba(14,14,19,.96), rgba(14,14,19,.72) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+body.nsa-immersive .nsa-back { display: none; }
+body.nsa-immersive .nsa-editbar { margin-inline: 16px; }
+
+.nsa-exit {
+  width: 32px; height: 32px; flex: 0 0 32px; display: grid; place-items: center;
+  border-radius: 50% !important; border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06); color: #fff; font: inherit;
+  font-size: 13px; line-height: 1; cursor: pointer;
+}
+.nsa-exit:hover { border-color: rgba(213,80,229,.7); color: #eda9f6; }
+.nsa-top { gap: 8px; }
+.nsa-brand { margin-right: auto; }
+
+/* wider layouts once the store owns the screen */
+@media (min-width: 820px) {
+  body.nsa-immersive .nsa-main {
+    display: grid; grid-template-columns: minmax(0, 1fr) 400px;
+    gap: 26px; align-items: start; padding: 8px 34px 40px; max-width: 1400px; margin: 0 auto;
+  }
+  body.nsa-immersive .nsa-hero { min-height: 74vh; }
+  body.nsa-immersive .nsa-hero-card { max-width: 360px; }
+  body.nsa-immersive .nsa-slots { grid-template-columns: 1fr 1fr; }
+  body.nsa-immersive .nsa-panel { margin-top: 0; position: sticky; top: 74px; }
+  body.nsa-immersive .nsa-modal-body { max-width: 900px; }
+}
+
+/* ==========================================================
+   Round 44 — edit mode that actually opens, and gallery photos
+   ========================================================== */
+
+/* the edit sheet must sit above the full-page store */
+body.nsa-immersive .mn-modal { z-index: 400; }
+body.nsa-immersive .mn-sheet { max-height: 92vh; }
+
+.nsa-topbtn.is-edit { border-color: rgba(255,255,255,.22); }
+.nsa-topbtn.is-edit.on {
+  background: #E3B3AD;
+  border-color: #E3B3AD;
+  color: #221d1b;
+  font-weight: 800;
+}
+.nsa-topbtn.is-manage { border-style: dashed; border-color: rgba(227,179,173,.7); color: #f6dcd7; }
+html[data-theme="noir"] .nsa-topbtn.is-edit.on { background: #d550e5; color: #fff; }
+
+/* gallery button inside the edit sheet */
+.nsa-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 999px !important;
+  background: #E3B3AD;
+  color: #2A2120;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(206,143,136,.28);
+}
+.nsa-pick:active { transform: scale(.98); }
+.mn-photo-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.mn-photo-actions small { font-size: 9px; line-height: 1.5; color: #8C7A72; max-width: 22ch; }
+html[data-theme="noir"] .mn-photo-actions small { color: #a3a3b2; }
+html[data-theme="noir"] .nsa-pick { background: #d550e5; color: #fff; }
+
+/* sheet footer gets a delete + save row */
+.mn-sheet footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid #EFE7DD;
+}
+.mn-sheet footer .mn-save { margin-left: auto; }
+.mn-sheet footer .mn-mini.danger { color: #B0453B; border-color: rgba(176,69,59,.45); }
+.mn-sheet footer .mn-save {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px !important;
+  background: #E3B3AD;
+  color: #2A2120;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(206,143,136,.3);
+}
+html[data-theme="noir"] .mn-sheet footer .mn-save { background: #d550e5; color: #fff; }
+html[data-theme="noir"] .mn-sheet footer { border-color: rgba(255,255,255,.12); }
+
+/* the floating undo bar stops being black */
+#ceb-bar { background: rgba(255,252,250,.94) !important; box-shadow: 0 12px 30px rgba(90,55,48,.22) !important; }
+#ceb-bar .ceb-count { color: #8E5750 !important; }
+#ceb-bar button { background: #E3B3AD !important; color: #2A2120 !important; }
+html[data-theme="dark"] #ceb-bar { background: rgba(32,26,23,.94) !important; }
+html[data-theme="dark"] #ceb-bar .ceb-count { color: #E3B3AD !important; }
+html[data-theme="noir"] #ceb-bar { background: rgba(24,22,30,.94) !important; }
+html[data-theme="noir"] #ceb-bar .ceb-count { color: #eda9f6 !important; }
+html[data-theme="noir"] #ceb-bar button { background: #d550e5 !important; color: #fff !important; }
+
+/* the store's own undo lives in its bar, so the floating one stays hidden */
+body.nsa-immersive #ceb-bar { display: none !important; }

@@ -1,0 +1,735 @@
+/* ==========================================================
+   NU LIMITS — BLUSH THEME (Round 21)
+   The new default: warm cream paper, dusty-rose accents,
+   charcoal feature cards, pill buttons and soft serif moods —
+   modelled on the reference beauty-studio app.
+   Activated with html[data-theme="blush"]. The original light
+   theme is still in Settings → Appearance → Light.
+   ========================================================== */
+
+html[data-theme="blush"] {
+  --bg: #F4EAE4;
+  --surface: rgba(255, 255, 255, 0.9);
+  --ink: #241F1D;
+  --muted: #8C7C74;
+  --purple: #D8A7A2;
+  --pink: #E7C0BA;
+  --line: rgba(255, 255, 255, 0.9);
+  --shadow: 0 14px 34px rgba(84, 56, 48, 0.1);
+  --nu-cream: #F4EAE4;
+  --nu-orange: #C98B84;
+  --nu-copper: #A9706A;
+  --nu-charcoal: #241F1D;
+  --nu-ink: #241F1D;
+
+  --bl-cream: #F4EAE4;
+  --bl-cream-2: #FBF4EF;
+  --bl-card: #FFFCFA;
+  --bl-ink: #241F1D;
+  --bl-ink-2: #3A3230;
+  --bl-muted: #9C8A82;
+  --bl-rose: #E3B3AD;
+  --bl-rose-deep: #CE8F88;
+  --bl-rose-soft: #F6DCD7;
+  --bl-dark: #262120;
+  --bl-dark-2: #1A1615;
+  --bl-line: rgba(60, 40, 35, 0.1);
+}
+
+html[data-theme="blush"] body {
+  background:
+    radial-gradient(ellipse at 8% -6%, #FFF8F4 0%, transparent 46%),
+    radial-gradient(ellipse at 100% 0%, #F8E2DC 0%, transparent 42%),
+    linear-gradient(180deg, #F6EDE7 0%, #F1E4DD 60%, #EFE1DA 100%);
+  color: var(--bl-ink);
+}
+
+html[data-theme="blush"] .app-shell { background: transparent; }
+
+/* ---------------- top bar ---------------- */
+html[data-theme="blush"] .topbar { background: transparent; }
+html[data-theme="blush"] .brand-logo { filter: none; }
+html[data-theme="blush"] .icon-button {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: var(--bl-line);
+  color: var(--bl-ink);
+  box-shadow: 0 6px 16px rgba(84, 56, 48, 0.07);
+}
+
+/* ---------------- type ---------------- */
+html[data-theme="blush"] .welcome h1,
+html[data-theme="blush"] .section-heading h2,
+html[data-theme="blush"] .gr-head h1 {
+  color: var(--bl-ink);
+  letter-spacing: -0.025em;
+}
+html[data-theme="blush"] .welcome h1 span { color: var(--bl-rose-deep); }
+html[data-theme="blush"] .eyebrow { color: var(--bl-rose-deep); letter-spacing: .18em; }
+html[data-theme="blush"] .muted { color: var(--bl-muted); }
+html[data-theme="blush"] .section-symbol {
+  background: var(--bl-rose-soft);
+  color: var(--bl-rose-deep);
+  border-color: rgba(206, 143, 136, 0.3);
+}
+
+/* ---------------- wallet deck ---------------- */
+html[data-theme="blush"] .nl-datebar {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: var(--bl-line);
+  color: var(--bl-ink);
+}
+html[data-theme="blush"] .nl-datebar-day {
+  background: var(--bl-dark);
+  color: #FCF5F1;
+}
+/* round 25 — the card faces keep their own wallet.css artwork, exactly as in
+   the light theme: a charcoal debit card and a light platinum credit card.
+   (The blush sheet used to repaint .nl-card, which blacked out the credit card.) */
+html[data-theme="blush"] .nl-deck { border-radius: 26px; }
+html[data-theme="blush"] .nl-wallet-foot,
+html[data-theme="blush"] .switch-card {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: var(--bl-line);
+  color: var(--bl-ink);
+}
+
+/* ---------------- action cards ---------------- */
+html[data-theme="blush"] .action-card {
+  background: var(--bl-card);
+  border-color: rgba(122, 90, 82, 0.1);
+  box-shadow: 0 12px 26px rgba(84, 56, 48, 0.08);
+}
+html[data-theme="blush"] .action-card:hover { box-shadow: 0 16px 32px rgba(84, 56, 48, 0.14); }
+html[data-theme="blush"] .action-icon {
+  background: var(--bl-dark);
+  color: #FBF3EF;
+  border-radius: 16px;
+}
+html[data-theme="blush"] .action-title { color: var(--bl-ink); }
+html[data-theme="blush"] .action-subtitle { color: var(--bl-muted); }
+html[data-theme="blush"] .action-arrow { color: var(--bl-rose-deep); }
+
+/* ---------------- generic surfaced cards ---------------- */
+html[data-theme="blush"] .glass-panel,
+html[data-theme="blush"] .mn-card,
+html[data-theme="blush"] .uv-card,
+html[data-theme="blush"] .jb-card,
+html[data-theme="blush"] .fm-card,
+html[data-theme="blush"] .bk-card,
+html[data-theme="blush"] .cr-card,
+html[data-theme="blush"] .sh-card,
+html[data-theme="blush"] .rs-card,
+html[data-theme="blush"] .gr-stats,
+html[data-theme="blush"] .uv-stats,
+html[data-theme="blush"] .jb-stats,
+html[data-theme="blush"] .nl-qualbadge,
+html[data-theme="blush"] .nv-card,
+html[data-theme="blush"] .cardpick-card {
+  background: var(--bl-card);
+  border-color: rgba(122, 90, 82, 0.1);
+  box-shadow: 0 10px 24px rgba(84, 56, 48, 0.07);
+  color: var(--bl-ink);
+}
+
+html[data-theme="blush"] .mn-card.is-mine,
+html[data-theme="blush"] .uv-card.is-focus,
+html[data-theme="blush"] .jb-card.is-mine {
+  border-color: rgba(206, 143, 136, 0.42);
+  box-shadow: 0 12px 28px rgba(206, 143, 136, 0.16);
+}
+
+/* ---------------- buttons ---------------- */
+html[data-theme="blush"] .primary-button,
+html[data-theme="blush"] .mn-btn,
+html[data-theme="blush"] .uv-btn.is-primary,
+html[data-theme="blush"] .jb-btn.is-primary,
+html[data-theme="blush"] .jbx-cancel.is-primary {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(206, 143, 136, 0.32);
+  font-weight: 780;
+}
+
+html[data-theme="blush"] .secondary-button,
+html[data-theme="blush"] .ghost-button,
+html[data-theme="blush"] .mn-btn.soft,
+html[data-theme="blush"] .uv-btn,
+html[data-theme="blush"] .jb-btn.is-ghost,
+html[data-theme="blush"] .jb-mini,
+html[data-theme="blush"] .empire-toggle {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--bl-line);
+  color: var(--bl-ink);
+  box-shadow: 0 6px 14px rgba(84, 56, 48, 0.06);
+}
+
+html[data-theme="blush"] .jb-tab,
+html[data-theme="blush"] .uv-tab,
+html[data-theme="blush"] .gr-tabs button {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--bl-muted);
+  border-color: transparent;
+}
+html[data-theme="blush"] .jb-tab.is-on,
+html[data-theme="blush"] .uv-tab.is-on,
+html[data-theme="blush"] .gr-tabs button.active {
+  background: var(--bl-dark);
+  color: #FCF5F1;
+}
+html[data-theme="blush"] .jb-tabs,
+html[data-theme="blush"] .uv-tabs {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--bl-line);
+}
+
+/* ---------------- page heroes ---------------- */
+html[data-theme="blush"] .uv-hero,
+html[data-theme="blush"] .jb-hero,
+html[data-theme="blush"] .mn-hero {
+  background: linear-gradient(160deg, #2B2524, #191514 72%);
+  box-shadow: 0 18px 38px rgba(38, 24, 20, 0.26);
+}
+html[data-theme="blush"] .uv-hero-fade,
+html[data-theme="blush"] .mn-hero-fade {
+  background: linear-gradient(180deg, rgba(24, 20, 19, 0.1), rgba(24, 20, 19, 0.86));
+}
+html[data-theme="blush"] .jb-hero-chip,
+html[data-theme="blush"] .uv-hero-chip {
+  color: #F6DED8;
+  border-color: rgba(246, 222, 216, 0.35);
+}
+html[data-theme="blush"] .jb-hero-icon,
+html[data-theme="blush"] .uv-hero-icon { color: var(--bl-rose); }
+
+/* ---------------- chips, tags, badges ---------------- */
+html[data-theme="blush"] .mn-state,
+html[data-theme="blush"] .jb-tag,
+html[data-theme="blush"] .uv-pill {
+  background: rgba(60, 40, 35, 0.06);
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .mn-state.owned,
+html[data-theme="blush"] .jb-tag.is-open {
+  background: rgba(83, 138, 116, 0.14);
+  color: #3E7A62;
+}
+html[data-theme="blush"] .mn-state.leased { background: rgba(206, 143, 136, 0.2); color: #A9615A; }
+html[data-theme="blush"] .jb-tag.is-mine,
+html[data-theme="blush"] .uv-card.is-now .uv-pill {
+  background: var(--bl-rose-soft);
+  color: #A9615A;
+}
+
+/* ---------------- inputs ---------------- */
+html[data-theme="blush"] input,
+html[data-theme="blush"] select,
+html[data-theme="blush"] textarea {
+  background: #FFFDFB;
+  border-color: rgba(122, 90, 82, 0.18);
+  color: var(--bl-ink);
+}
+html[data-theme="blush"] input::placeholder { color: #B8A69E; }
+
+/* ---------------- bottom navigation ---------------- */
+html[data-theme="blush"] .bottom-nav {
+  background: rgba(255, 250, 247, 0.94);
+  border-top: 1px solid rgba(122, 90, 82, 0.1);
+  box-shadow: 0 -10px 26px rgba(84, 56, 48, 0.07);
+}
+html[data-theme="blush"] .nav-item { color: var(--bl-muted); }
+html[data-theme="blush"] .nav-item.active { color: var(--bl-ink); }
+html[data-theme="blush"] .nav-item.active::after { background: var(--bl-rose-deep); }
+
+/* ---------------- toasts + overlays ---------------- */
+html[data-theme="blush"] .mn-toast {
+  background: var(--bl-dark);
+  color: #FBF3EF;
+  box-shadow: 0 16px 34px rgba(38, 24, 20, 0.3);
+}
+
+/* ---------------- progress bars ---------------- */
+html[data-theme="blush"] .uv-bar,
+html[data-theme="blush"] .jb-meter,
+html[data-theme="blush"] .jbx-bar { background: rgba(60, 40, 35, 0.1); }
+html[data-theme="blush"] .uv-bar > i,
+html[data-theme="blush"] .jb-meter i,
+html[data-theme="blush"] .jbx-bar i {
+  background: linear-gradient(90deg, var(--bl-rose), var(--bl-rose-deep));
+}
+html[data-theme="blush"] .jbx-bar i { transition: width .16s linear; }
+html[data-theme="blush"] .jbx-card { background: var(--bl-card); }
+html[data-theme="blush"] .jbx-card h3 { color: var(--bl-ink); }
+
+/* ---------------- interview / dialog surfaces ---------------- */
+html[data-theme="blush"] .jb-editpanel,
+html[data-theme="blush"] .uv-editpanel {
+  background: rgba(227, 179, 173, 0.16);
+  border-color: rgba(206, 143, 136, 0.45);
+}
+html[data-theme="blush"] .jb-edit-title { color: #A9615A; }
+
+/* ---------------- theme swatches ---------------- */
+html[data-theme="blush"] .theme-set { background: rgba(60, 40, 35, 0.06); }
+html[data-theme="blush"] .theme-set button { color: var(--bl-muted); }
+html[data-theme="blush"] .theme-set button.is-on {
+  background: var(--bl-dark);
+  color: #FCF5F1;
+  box-shadow: 0 6px 14px rgba(38, 24, 20, 0.2);
+}
+
+/* ---------------- the four swatch chips ---------------- */
+.theme-set { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ---------------- ignition overlay ---------------- */
+html[data-theme="blush"] .ig-shell {
+  background: radial-gradient(120% 90% at 50% 0%, #2B2524 0%, #141110 72%);
+}
+html[data-theme="blush"] .ig-status { color: #F6DED8; }
+html[data-theme="blush"] .ig-arc { stroke: var(--bl-rose); }
+
+/* ==========================================================
+   ROUND 22 — shape + colour pass
+   Square-cornered cards, white boxes behind pills and the
+   neutral bottom navigation are all replaced by blush shapes.
+   ========================================================== */
+
+/* every control is a real pill — no square shoulders anywhere */
+html[data-theme="blush"] button:not([class*="card"]):not([class*="niche"]):not([class*="tile"]):not([class*="brand"]):not([class*="store"]):not([class*="product"]):not([class*="slot"]):not([class*="asset"]),
+html[data-theme="blush"] .nl-card,
+html[data-theme="blush"] .nl-flip,
+html[data-theme="blush"] .secondary-button,
+html[data-theme="blush"] .primary-button,
+html[data-theme="blush"] .mn-btn,
+html[data-theme="blush"] .uv-btn,
+html[data-theme="blush"] .jb-btn,
+html[data-theme="blush"] .jb-mini,
+html[data-theme="blush"] .jb-tab,
+html[data-theme="blush"] .uv-tab,
+html[data-theme="blush"] .uv-tabs button,
+html[data-theme="blush"] .jb-tab,
+html[data-theme="blush"] .gr-tabs button,
+html[data-theme="blush"] .empire-toggle,
+html[data-theme="blush"] .theme-set button,
+html[data-theme="blush"] .jbx-cancel,
+html[data-theme="blush"] .mn-engine-btn {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 999px;
+}
+
+/* the debit / credit cards keep a card-shaped radius, no square corners */
+html[data-theme="blush"] .nl-deck { border-radius: 26px; }
+html[data-theme="blush"] .nl-card {
+  border-radius: 24px;
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+}
+
+/* the "Paying with … Switch card" strip: a pink pill, not a white box */
+html[data-theme="blush"] .nl-wallet-foot {
+  padding: 8px 8px 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .72);
+  border: 1px solid var(--bl-line);
+}
+html[data-theme="blush"] .nl-flip {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border: 0;
+  color: #2A2120;
+  padding: 9px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .32);
+  font-weight: 800;
+}
+html[data-theme="blush"] .nl-flip:active { transform: scale(.96); }
+
+/* tab rails: no white plate behind them */
+html[data-theme="blush"] .uv-tabs,
+html[data-theme="blush"] .jb-tabs,
+html[data-theme="blush"] .gr-tabs {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+html[data-theme="blush"] .uv-tabs button,
+html[data-theme="blush"] .jb-tab,
+html[data-theme="blush"] .gr-tabs button {
+  background: rgba(255, 255, 255, .62);
+  border: 1px solid var(--bl-line);
+  color: var(--bl-muted);
+  border-radius: 999px;
+}
+html[data-theme="blush"] .uv-tabs button.on,
+html[data-theme="blush"] .jb-tab.is-on,
+html[data-theme="blush"] .gr-tabs button.active {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .3);
+}
+
+/* primary actions across every page take the blush pink of Jobs → Apply */
+html[data-theme="blush"] .primary-button,
+html[data-theme="blush"] .mn-btn:not(.soft),
+html[data-theme="blush"] .uv-btn.is-primary,
+html[data-theme="blush"] .jb-btn.is-primary,
+html[data-theme="blush"] .gm-action,
+html[data-theme="blush"] .cardpick-card.is-on {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  box-shadow: 0 10px 22px rgba(206, 143, 136, .3);
+}
+
+/* secondary buttons and back buttons: pink-tinted, still rounded */
+html[data-theme="blush"] .secondary-button,
+html[data-theme="blush"] .jb-btn.is-ghost,
+html[data-theme="blush"] .uv-btn:not(.is-primary) {
+  background: rgba(255, 255, 255, .8);
+  border: 1px solid rgba(206, 143, 136, .45);
+  color: #8E5750;
+  border-radius: 999px;
+}
+html[data-theme="blush"] .secondary-button:hover,
+html[data-theme="blush"] .jb-btn.is-ghost:hover {
+  background: var(--bl-rose-soft);
+  color: #7C4A44;
+}
+
+/* bottom navigation: blush pink active pill, exactly the Apply colour */
+html[data-theme="blush"] .bottom-nav {
+  background: rgba(255, 250, 247, .96);
+  border-top: 1px solid rgba(206, 143, 136, .22);
+}
+html[data-theme="blush"] .nav-item {
+  border-radius: 18px;
+  color: #A79590;
+  transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+html[data-theme="blush"] .nav-item svg { opacity: .85; }
+html[data-theme="blush"] .nav-item.active {
+  color: #2A2120;
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .35);
+}
+html[data-theme="blush"] .nav-item.active::after { display: none; }
+html[data-theme="blush"] .nav-item.active svg { opacity: 1; }
+
+/* cards everywhere: soft, rounded, no square plate behind content */
+html[data-theme="blush"] .mn-engine.is-soundonly {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--bl-line);
+}
+html[data-theme="blush"] .mn-engine-up {
+  border-radius: 999px;
+  background: var(--bl-rose-soft);
+  border: 1px solid rgba(206, 143, 136, .45);
+  color: #8E5750;
+  padding: 6px 11px;
+  font-weight: 780;
+}
+
+/* category chips on the assets / shop pages */
+html[data-theme="blush"] .mn-cats button {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .68);
+  border: 1px solid var(--bl-line);
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .mn-cats button.active {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .3);
+}
+html[data-theme="blush"] .mn-cats button b {
+  background: rgba(42, 33, 32, .16);
+  color: #2A2120;
+}
+
+/* the active bottom-nav pill sits comfortably inside its cell */
+html[data-theme="blush"] .nav-item.active {
+  margin: 6px 3px;
+  min-height: 54px;
+  padding: 7px 2px 6px;
+}
+
+/* the little orange indicator bar inside the active nav pill */
+html[data-theme="blush"] .nav-item.active .nav-indicator {
+  background: rgba(42, 33, 32, .5);
+  box-shadow: none;
+}
+html[data-theme="blush"] .nav-item:hover { background: rgba(227, 179, 173, .18); color: #7C4A44; }
+
+/* segmented controls (shop stores / wardrobe, and any other chip pair) */
+html[data-theme="blush"] .sh-chips button,
+html[data-theme="blush"] .ca-chips button,
+html[data-theme="blush"] .bk-tabs button,
+html[data-theme="blush"] .fm-tabs button,
+html[data-theme="blush"] .rs-tabs button,
+html[data-theme="blush"] .nv-chips button {
+  border-radius: 999px;
+  border: 1px solid var(--bl-line);
+  background: rgba(255, 255, 255, .68);
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .sh-chips button.active,
+html[data-theme="blush"] .ca-chips button.active,
+html[data-theme="blush"] .bk-tabs button.active,
+html[data-theme="blush"] .fm-tabs button.active,
+html[data-theme="blush"] .rs-tabs button.active,
+html[data-theme="blush"] .nv-chips button.active {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .3);
+}
+
+/* bank tabs use .on for the current one — keep the same pink language */
+html[data-theme="blush"] .bk-tabs {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+html[data-theme="blush"] .bk-tabs button {
+  border-radius: 999px;
+  border: 1px solid var(--bl-line);
+  background: rgba(255, 255, 255, .68);
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .bk-tabs button.on {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .3);
+}
+
+/* ==========================================================
+   ROUND 23 — blush sweep: bank crest, investments, extra
+   ========================================================== */
+
+/* Bank Corporation crest + home strip crest go blush, not orange */
+html[data-theme="blush"] .bk-crest,
+html[data-theme="blush"] .bk-home-crest {
+  background: linear-gradient(150deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  box-shadow: 0 6px 16px rgba(206, 143, 136, .38);
+}
+html[data-theme="blush"] .bk-home-strip {
+  background: linear-gradient(150deg, #2B2524, #191514 72%);
+  border-color: rgba(206, 143, 136, .22);
+}
+
+/* Investments — range pills, quantity stepper, trade buttons */
+html[data-theme="blush"] .nl-range-controls {
+  background: rgba(255, 255, 255, .66);
+  border: 1px solid var(--bl-line);
+  border-radius: 999px;
+}
+html[data-theme="blush"] .nl-range-controls button {
+  border-radius: 999px;
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .nl-range-controls button.active {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  box-shadow: 0 8px 18px rgba(206, 143, 136, .3);
+}
+html[data-theme="blush"] .nl-qty-group {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--bl-line);
+}
+html[data-theme="blush"] .nl-qty-step {
+  border-radius: 999px;
+  color: #7C4A44;
+  background: var(--bl-rose-soft);
+}
+html[data-theme="blush"] .nl-qty-step:active { background: var(--bl-rose); color: #2A2120; }
+html[data-theme="blush"] .nl-qty-input { background: transparent; color: var(--bl-ink); }
+html[data-theme="blush"] .nl-buy {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(206, 143, 136, .3);
+}
+html[data-theme="blush"] .nl-sell {
+  background: rgba(255, 255, 255, .82);
+  color: #9E5A52;
+  border: 1px solid rgba(206, 143, 136, .5);
+  border-radius: 999px;
+  box-shadow: none;
+}
+html[data-theme="blush"] .nl-portfolio,
+html[data-theme="blush"] .nl-market-card,
+html[data-theme="blush"] .nl-asset-row,
+html[data-theme="blush"] .nl-holdings,
+html[data-theme="blush"] .nl-discover {
+  border-radius: 22px;
+  border-color: rgba(122, 90, 82, .1);
+}
+html[data-theme="blush"] .nl-chip-btn,
+html[data-theme="blush"] .nl-filter,
+html[data-theme="blush"] .nl-collapse,
+html[data-theme="blush"] .nl-jump {
+  border-radius: 999px;
+  border: 1px solid var(--bl-line);
+  background: rgba(255, 255, 255, .7);
+  color: var(--bl-muted);
+}
+html[data-theme="blush"] .nl-chip-btn.active,
+html[data-theme="blush"] .nl-filter.active {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  border-color: transparent;
+}
+
+/* quantity stepper reads as one pill, no square white box */
+html[data-theme="blush"] .nl-qty-group {
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(206, 143, 136, .45);
+}
+html[data-theme="blush"] .nl-qty-input { border: 0; }
+
+/* header AI launcher sits with the notification bell, never over a button */
+html[data-theme="blush"] .sg-launch {
+  background: rgba(255, 255, 255, .9);
+  border: 1px solid var(--bl-line);
+  color: #2A2120;
+  box-shadow: 0 6px 16px rgba(84, 56, 48, .08);
+}
+html[data-theme="dark"] .sg-launch {
+  background: #1b1815;
+  border-color: rgba(255, 246, 235, .1);
+  color: #f3eee6;
+}
+
+/* the floating panel keeps clear of the bottom navigation */
+html[data-theme="blush"] .sg-panel { border-radius: 22px; }
+
+
+/* ==========================================================
+   ROUND 26 — cards keep their light-theme shapes
+   ========================================================== */
+
+/* Build your empire tiles: 21 px rounded squares like light mode, not pills */
+html[data-theme="blush"] .action-card,
+html[data-theme="blush"] .action-grid .action-card {
+  border-radius: 21px;
+  background: #FFFCFA;
+  border: 1px solid rgba(122, 90, 82, .1);
+}
+html[data-theme="blush"] .action-card .action-icon {
+  border-radius: 14px;
+}
+html[data-theme="blush"] .action-card:hover { border-color: rgba(206, 143, 136, .5); }
+
+/* YouTube content categories: 16 px rounded tiles, not circles */
+html[data-theme="blush"] .cr-niche {
+  border-radius: 16px;
+  outline-color: var(--bl-rose-deep);
+}
+html[data-theme="blush"] .cr-niche.is-on { outline: 3px solid var(--bl-rose-deep); }
+html[data-theme="blush"] .cr-niche.is-on::before {
+  background: var(--bl-rose-deep);
+  color: #2A2120;
+}
+
+/* and the same protection for every other card-ish button */
+html[data-theme="blush"] .sh-store,
+html[data-theme="blush"] .cr-card,
+html[data-theme="blush"] .mn-brand,
+html[data-theme="blush"] .mn-brand-wrap button,
+html[data-theme="blush"] .cardpick-card,
+html[data-theme="blush"] .bk-card,
+html[data-theme="blush"] .uv-card,
+html[data-theme="blush"] .jb-card,
+html[data-theme="blush"] .gr-card {
+  border-radius: 18px;
+}
+
+/* ==========================================================
+   ROUND 27 — bottom navigation back to the light-mode language:
+   no pill, just the blush ink + the little underline bar
+   ========================================================== */
+html[data-theme="blush"] .bottom-nav .nav-item,
+html[data-theme="blush"] .bottom-nav .nav-item.active {
+  border-radius: 0 !important;
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+  min-height: 66px;
+  padding: 10px 2px 7px;
+}
+html[data-theme="blush"] .bottom-nav .nav-item { color: #A79590; }
+html[data-theme="blush"] .bottom-nav .nav-item.active { color: #B4625A; font-weight: 800; }
+html[data-theme="blush"] .nav-item.active .nav-indicator {
+  background: linear-gradient(90deg, var(--bl-rose-deep), var(--bl-rose));
+  box-shadow: 0 0 8px rgba(206, 143, 136, .45);
+}
+html[data-theme="blush"] .nav-item:active { background: rgba(227, 179, 173, .16); }
+html[data-theme="blush"] .nav-item:hover { background: rgba(227, 179, 173, .12); }
+
+/* the qualification card on Home is a card, not a pill */
+html[data-theme="blush"] .nl-qualbadge {
+  border-radius: 20px !important;
+}
+
+/* ==========================================================
+   ROUND 27b — remaining orange accents and dark CTAs go blush
+   ========================================================== */
+
+/* primary calls to action on Family, Creator and Restaurant */
+html[data-theme="blush"] .fm-btn.is-wide,
+html[data-theme="blush"] .fm-btn.is-primary,
+html[data-theme="blush"] .cr-primary,
+html[data-theme="blush"] .rs-btn.primary,
+html[data-theme="blush"] .cr-btn.primary,
+html[data-theme="blush"] .rs-btn,
+html[data-theme="blush"] .fm-action {
+  background: linear-gradient(140deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  border-color: transparent;
+  color: #2A2120;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(206, 143, 136, .3);
+}
+
+/* hero crests that were still orange */
+html[data-theme="blush"] .fm-hero,
+html[data-theme="blush"] .bk-hero {
+  background:
+    radial-gradient(120% 90% at 92% 0%, rgba(227, 179, 173, .22), transparent 58%),
+    linear-gradient(150deg, #2B2524, #191514 74%);
+}
+html[data-theme="blush"] .fm-hero-ico,
+html[data-theme="blush"] .rs-pill,
+html[data-theme="blush"] .cr-hero-flag {
+  background: linear-gradient(150deg, var(--bl-rose) 0%, var(--bl-rose-deep) 100%);
+  color: #2A2120;
+  box-shadow: 0 6px 16px rgba(206, 143, 136, .35);
+}
+
+/* hero eyebrow accents pick up the rose instead of orange */
+html[data-theme="blush"] .fm-hero .eyebrow,
+html[data-theme="blush"] .bk-hero-text .eyebrow {
+  color: rgba(246, 222, 216, .8);
+}
+
+/* mansion explorer: tiles stay cards, not capsules */
+html[data-theme="blush"] .mt-stat { border-radius: 16px !important; }
+html[data-theme="blush"] .mt-add { border-radius: 14px !important; }
+html[data-theme="blush"] .mt-shot-img { border-radius: 14px !important; }
+html[data-theme="blush"] .mt-sheet { background: var(--bl-cream); }
+html[data-theme="blush"] .mt-section { background: var(--bl-card); border-color: rgba(122, 90, 82, .1); }
+html[data-theme="blush"] .mt-room { border-radius: 16px; }

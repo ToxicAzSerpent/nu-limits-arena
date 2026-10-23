@@ -1,0 +1,298 @@
+/* =========================================================
+   NU LIMITS — LOGISTICS DEPOT (Round 39)
+   Fleet cards, dispatch form, shipment cards with the
+   Packed → Shipped → In Transit → Delivered pipeline.
+   Follows the active theme (Light by default).
+   ========================================================= */
+
+.lg-page { --lg-card: var(--vt-card, #FFFDF9); }
+
+/* ---------------- dispatch form ---------------- */
+.lg-form { display: grid; gap: 9px; }
+
+.lg-form label {
+  display: grid;
+  gap: 5px;
+  font-size: 8.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--muted, #8A8177);
+}
+
+.lg-form select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px !important;
+  border: 1px solid rgba(29, 28, 27, .12);
+  background: #FFFFFF;
+  color: var(--ink, #1D1C1B);
+  font: inherit;
+  font-size: 11.5px;
+  appearance: none;
+}
+
+.lg-quote {
+  display: grid;
+  gap: 5px;
+  padding: 11px;
+  border-radius: 13px !important;
+  background: rgba(29, 28, 27, .04);
+  border: 1px dashed rgba(29, 28, 27, .12);
+}
+
+.lg-quote-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  color: var(--muted, #8A8177);
+}
+
+.lg-quote-row b { font-size: 11px; color: var(--ink, #1D1C1B); }
+.lg-quote-row.is-total { border-top: 1px solid rgba(29, 28, 27, .1); padding-top: 6px; margin-top: 2px; }
+.lg-quote .good, .lg-money .good, .vt-ledger .good { color: #2F7A5F; }
+.lg-quote .bad, .lg-money .bad, .vt-ledger .bad { color: #B0453B; }
+
+.lg-dispatch {
+  padding: 13px;
+  border: 0;
+  border-radius: 999px !important;
+  background: linear-gradient(140deg, #E3B3AD 0%, #CE8F88 100%);
+  color: #2A2120;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(206, 143, 136, .28);
+}
+
+/* ---------------- orders ---------------- */
+.lg-orders { display: grid; gap: 10px; }
+
+.lg-order {
+  padding: 12px;
+  border-radius: 16px !important;
+  background: #FFFFFF;
+  border: 1px solid rgba(29, 28, 27, .09);
+  box-shadow: 0 8px 20px rgba(40, 32, 28, .06);
+}
+
+.lg-order.is-transit { border-color: rgba(206, 143, 136, .55); }
+.lg-order.is-done { background: rgba(60, 40, 32, .03); }
+
+.lg-order-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lg-order-top code { font-size: 10px; font-weight: 800; letter-spacing: .06em; color: #6E635C; }
+
+.lg-status {
+  padding: 4px 9px;
+  border-radius: 999px !important;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: rgba(29, 28, 27, .08);
+  color: #5E534C;
+}
+
+.lg-status.s1 { background: rgba(206, 143, 136, .22); color: #8E5750; }
+.lg-status.s2 { background: #E3B3AD; color: #2A2120; }
+.lg-status.s3 { background: rgba(47, 122, 95, .16); color: #2F7A5F; }
+
+.lg-route { display: flex; align-items: center; gap: 8px; margin: 9px 0 8px; }
+.lg-route div { flex: 1; min-width: 0; }
+.lg-route small { display: block; font-size: 7.5px; letter-spacing: .12em; color: #A09189; }
+.lg-route b { display: block; font-size: 11.5px; color: var(--ink, #1D1C1B); }
+.lg-arrow { color: #B4625A; font-size: 13px; }
+
+.lg-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.lg-meta span { font-size: 9.5px; color: #5E534C; }
+.lg-meta small { display: block; font-size: 7px; letter-spacing: .1em; color: #A09189; }
+
+.lg-money {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 11px !important;
+  background: rgba(29, 28, 27, .04);
+  font-size: 9.5px;
+  color: #5E534C;
+}
+
+.lg-money b { font-size: 10.5px; margin-left: 3px; }
+.good { color: #2F7A5F; }
+.bad { color: #B0453B; }
+
+/* pipeline */
+.lg-pipe { display: flex; align-items: flex-start; gap: 0; margin-top: 11px; }
+
+.lg-step {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 7.5px;
+  letter-spacing: .04em;
+  color: #B0A69E;
+}
+
+.lg-step i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: 0 auto 5px;
+  border-radius: 50%;
+  background: rgba(29, 28, 27, .14);
+  position: relative;
+  z-index: 2;
+}
+
+.lg-step::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 50%;
+  height: 2px;
+  background: rgba(29, 28, 27, .12);
+}
+
+.lg-step:first-child::before { display: none; }
+
+.lg-step.on i { background: #CE8F88; }
+.lg-step.on::before { background: #CE8F88; }
+.lg-step.now i { box-shadow: 0 0 0 4px rgba(206, 143, 136, .25); background: #B4625A; }
+.lg-step.on b { color: #8E5750; }
+.lg-step b { font-weight: 700; }
+
+.lg-paid {
+  margin: 9px 0 0;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #2F7A5F;
+}
+
+/* ---------------- fleet ---------------- */
+.lg-fleet { display: grid; gap: 10px; }
+
+.lg-truck {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(29, 28, 27, .09);
+}
+
+.lg-truck-art {
+  position: relative;
+  height: 96px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 9px;
+}
+
+.lg-truck-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12, 10, 9, .05), rgba(12, 10, 9, .68)); }
+
+.lg-truck-class,
+.lg-truck-owned {
+  position: relative;
+  z-index: 2;
+  padding: 4px 8px;
+  border-radius: 999px !important;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+}
+
+.lg-truck-owned { margin-left: auto; background: #E3B3AD; color: #2A2120; }
+
+.lg-truck-body { padding: 10px 12px 12px; }
+.lg-truck-body b { font-size: 12px; color: var(--ink, #1D1C1B); }
+
+.lg-specs { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 9px; }
+
+.lg-specs span {
+  padding: 4px 8px;
+  border-radius: 999px !important;
+  background: rgba(29, 28, 27, .05);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #6E635C;
+}
+
+.lg-buy {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: 999px !important;
+  background: rgba(206, 143, 136, .2);
+  color: #8E5750;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.lg-buy:hover { background: #E3B3AD; color: #2A2120; }
+
+/* ---------------- drivers ---------------- */
+.lg-driver {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px !important;
+  background: rgba(29, 28, 27, .035);
+  margin-bottom: 6px;
+}
+
+.lg-avatar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(206, 143, 136, .3);
+  color: #7C4A44;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.lg-driver-txt { flex: 1; min-width: 0; }
+.lg-driver-txt b { display: block; font-size: 10.5px; color: var(--ink, #1D1C1B); }
+.lg-driver-txt small { display: block; font-size: 9px; color: #8A8177; }
+
+.lg-driver-state {
+  padding: 4px 8px;
+  border-radius: 999px !important;
+  background: rgba(47, 122, 95, .14);
+  color: #2F7A5F;
+  font-size: 8.5px;
+  font-weight: 800;
+}
+
+.lg-driver-state.busy { background: rgba(206, 143, 136, .24); color: #8E5750; }
+
+/* ---------------- dark theme ---------------- */
+html[data-theme="dark"] .lg-order,
+html[data-theme="dark"] .lg-truck { background: #1D1917; border-color: rgba(255, 246, 235, .09); }
+
+html[data-theme="dark"] .lg-order.is-done { background: rgba(255, 246, 235, .04); }
+html[data-theme="dark"] .lg-form select { background: #1D1917; border-color: rgba(255, 246, 235, .12); color: #F2E9E3; }
+html[data-theme="dark"] .lg-quote { background: rgba(255, 246, 235, .05); border-color: rgba(255, 246, 235, .12); }
+html[data-theme="dark"] .lg-money { background: rgba(255, 246, 235, .05); }
+html[data-theme="dark"] .lg-specs span { background: rgba(255, 246, 235, .07); color: #C9BAB1; }
+html[data-theme="dark"] .lg-driver { background: rgba(255, 246, 235, .05); }
+html[data-theme="dark"] .lg-route b,
+html[data-theme="dark"] .lg-quote-row b,
+html[data-theme="dark"] .lg-truck-body b,
+html[data-theme="dark"] .lg-driver-txt b { color: #F2E9E3; }
+html[data-theme="dark"] .lg-meta span,
+html[data-theme="dark"] .lg-money { color: #C9BAB1; }
+
+.lg-dispatch:disabled { opacity: .5; cursor: default; }

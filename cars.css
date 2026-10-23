@@ -1,0 +1,308 @@
+/* ==========================================================
+   NU LIMITS — CARS  (round 16)
+   Showroom tiles, the marque hero, and the engine strip.
+   ========================================================== */
+
+/* ---------- make tiles ---------- */
+.mn-brands {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (min-width: 720px) {
+  .mn-brands { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.mn-brand-wrap { position: relative; }
+
+.mn-brand {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #17150F;
+  cursor: pointer;
+  text-align: left;
+  isolation: isolate;
+  transition: transform .28s cubic-bezier(.22, 1, .36, 1), box-shadow .28s ease;
+  box-shadow: 0 14px 34px rgba(24, 18, 10, .22), inset 0 0 0 1px rgba(255, 255, 255, .12);
+}
+
+.mn-brand img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1), filter .3s ease;
+}
+
+.mn-brand-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 9, 7, .12) 0%, rgba(10, 9, 7, 0) 38%, rgba(10, 9, 7, .78) 100%);
+  transition: opacity .3s ease;
+}
+
+.mn-brand b {
+  position: absolute;
+  left: 12px;
+  right: 44px;
+  bottom: 30px;
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+  line-height: 1.15;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .45);
+}
+
+.mn-brand small {
+  position: absolute;
+  left: 12px;
+  bottom: 13px;
+  color: rgba(255, 255, 255, .72);
+  font-size: 8.4px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.mn-brand-arrow {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .42);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1;
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1), background .3s ease;
+}
+
+/* the subtle hover the tile needs to feel alive */
+@media (hover: hover) {
+  .mn-brand:hover { transform: translateY(-3px); box-shadow: 0 22px 44px rgba(24, 18, 10, .32), inset 0 0 0 1px rgba(244, 214, 154, .55); }
+  .mn-brand:hover img { transform: scale(1.07); }
+  .mn-brand:hover .mn-brand-arrow { transform: translate(2px, -2px); background: rgba(244, 214, 154, .9); color: #221a0d; border-color: transparent; }
+  .mn-brand:hover b { color: #f7e6c4; }
+}
+
+.mn-brand:active { transform: scale(.985); }
+.mn-brand:focus-visible { outline: 2px solid rgba(226, 190, 110, .7); outline-offset: 3px; }
+
+/* edit-mode tools sit above the tile */
+.mn-brand-tools {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: flex;
+  gap: 5px;
+  z-index: 3;
+}
+.mn-brand-tools button {
+  height: 26px;
+  min-width: 26px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(12, 10, 8, .74);
+  color: #f6efe3;
+  font-size: 7.6px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.mn-brand-tools button svg { width: 13px; height: 13px; display: block; }
+.mn-brand-tools button:hover { background: rgba(244, 214, 154, .9); color: #201808; }
+
+/* the "add make" tile */
+.mn-brand-add {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 4px;
+  border: 1.5px dashed rgba(29, 28, 27, .22);
+  background: rgba(255, 255, 255, .5);
+  box-shadow: none;
+  color: #6E6157;
+}
+.mn-brand-add span { font-size: 24px; font-weight: 300; line-height: 1; }
+.mn-brand-add b { position: static; color: inherit; font-size: 11px; text-shadow: none; }
+.mn-brand-add small { position: static; color: #9A8E81; }
+.mn-brand-add:hover { border-color: #C79A4A; color: #8A6A2B; }
+
+/* ---------- the marque hero ---------- */
+.mn-hero {
+  position: relative;
+  margin: 2px 0 14px;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 232px;
+  display: flex;
+  align-items: flex-end;
+  background: #17150F;
+}
+
+.mn-hero-art {
+  position: absolute;
+  inset: -6% 0 -18% 0;
+  background-size: cover;
+  background-position: center 40%;
+  transform: scale(1.02);
+  animation: mnHeroIn 1.1s cubic-bezier(.22, 1, .36, 1) both;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, rgba(0, 0, 0, .35) 74%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 46%, rgba(0, 0, 0, .35) 74%, transparent 100%);
+}
+
+@keyframes mnHeroIn {
+  from { opacity: .2; transform: scale(1.08); }
+  to { opacity: 1; transform: scale(1.02); }
+}
+
+.mn-hero-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 10, 8, .18) 0%, rgba(12, 10, 8, 0) 34%, rgba(12, 10, 8, .9) 92%);
+}
+
+.mn-hero-body {
+  position: relative;
+  z-index: 2;
+  padding: 16px 16px 18px;
+  width: 100%;
+}
+.mn-hero-body .eyebrow { color: #E7C88C; margin: 0 0 4px; }
+.mn-hero-body h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 27px;
+  font-weight: 850;
+  letter-spacing: -.6px;
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .5);
+}
+.mn-hero-body p {
+  margin: 5px 0 0;
+  max-width: 44ch;
+  color: rgba(255, 255, 255, .74);
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.mn-hero-back {
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  z-index: 3;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 999px;
+  background: rgba(12, 10, 8, .48);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: .2px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .2s ease, transform .2s ease;
+}
+.mn-hero-back:hover { background: rgba(244, 214, 154, .92); color: #1d1608; border-color: transparent; }
+
+/* ---------- engine strip ---------- */
+.mn-engine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+  padding: 7px 9px;
+  border-radius: 13px;
+  background: rgba(29, 28, 27, .05);
+  border: 1px solid rgba(29, 28, 27, .07);
+}
+
+.mn-engine-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #1D1C1B;
+  color: #fff;
+  font-size: 9.4px;
+  font-weight: 780;
+  letter-spacing: .2px;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
+}
+.mn-engine-btn:active { transform: scale(.97); }
+
+.mn-engine-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6d6258;
+  box-shadow: 0 0 0 0 rgba(226, 190, 110, .5);
+  flex: 0 0 auto;
+}
+
+.mn-engine.is-on .mn-engine-btn { background: #B4432B; }
+.mn-engine.is-on .mn-engine-led {
+  background: #F2C879;
+  animation: mnEnginePulse 1.1s ease-in-out infinite;
+}
+@keyframes mnEnginePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(242, 200, 121, .55); }
+  50% { box-shadow: 0 0 0 7px rgba(242, 200, 121, 0); }
+}
+
+.mn-engine-meta {
+  font-size: 8.2px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #918578;
+}
+
+.mn-engine-up {
+  margin-left: auto;
+  padding: 6px 9px;
+  border: 1px solid rgba(29, 28, 27, .14);
+  border-radius: 9px;
+  background: #fff;
+  color: #1D1C1B;
+  font-size: 8.2px;
+  font-weight: 760;
+  cursor: pointer;
+}
+.mn-engine-up:hover { border-color: #C79A4A; color: #8A6A2B; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mn-brand, .mn-brand img, .mn-brand-arrow, .mn-hero-art { transition: none; animation: none; }
+  .mn-engine.is-on .mn-engine-led { animation: none; }
+}
+
+.mn-brand-hint {
+  margin: 14px 2px 0;
+  color: #8A7E71;
+  font-size: 9.6px;
+  line-height: 1.5;
+}
+html[data-theme="dark"] .mn-brand-hint { color: #9A8E80; }

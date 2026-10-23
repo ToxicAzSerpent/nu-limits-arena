@@ -1,0 +1,99 @@
+/* =========================================================
+   NU LIMITS — EDIT BADGES (Round 36)
+   Floating ⇄ / ✕ / ＋ controls over every photo, card and
+   section while Creator Edit Mode is on.
+   ========================================================= */
+
+#ceb-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 460;
+  pointer-events: none;
+}
+
+.ceb-btn {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 50% !important;
+  background: rgba(24, 19, 17, .78);
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 16px rgba(20, 14, 12, .35);
+  transition: background .15s ease, transform .12s ease;
+}
+
+.ceb-btn:hover { transform: scale(1.08); }
+.ceb-btn.is-del:hover { background: #C9685F; border-color: #C9685F; }
+.ceb-btn.is-swap:hover { background: #2F6F63; border-color: #2F6F63; }
+.ceb-btn.is-add { background: rgba(206, 143, 136, .92); border-color: rgba(255, 255, 255, .5); color: #2A2120; }
+.ceb-btn.is-add:hover { background: #E3B3AD; }
+
+#ceb-bar {
+  position: fixed;
+  right: 14px;
+  bottom: 92px;
+  z-index: 462;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px 7px 12px;
+  border-radius: 999px;
+  background: rgba(24, 19, 17, .86);
+  box-shadow: 0 12px 28px rgba(20, 14, 12, .34);
+  backdrop-filter: blur(8px);
+}
+
+#ceb-bar .ceb-count {
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .62);
+}
+
+#ceb-bar button {
+  padding: 7px 11px;
+  border: 0;
+  border-radius: 999px !important;
+  background: #E3B3AD;
+  color: #2A2120;
+  font: inherit;
+  font-size: 9.5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* blocks you add yourself */
+.cb-blocks { margin: 10px 0; }
+
+.cb-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #FFFCFA;
+  border: 1px solid rgba(29, 28, 27, .08);
+  box-shadow: 0 10px 24px rgba(60, 40, 32, .07);
+}
+
+.cb-card p {
+  margin: 0;
+  padding: 13px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #4A423D;
+}
+
+.cb-art { height: 170px; background-size: cover; background-position: center; }
+
+html[data-theme="dark"] .cb-card { background: #1D1917; border-color: rgba(255, 246, 235, .08); }
+html[data-theme="dark"] .cb-card p { color: #DED3CB; }

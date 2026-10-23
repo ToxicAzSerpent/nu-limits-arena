@@ -1,0 +1,440 @@
+/* ==========================================================
+   NU LIMITS — LIVE INVESTMENT TERMINAL  (round 2)
+   Loaded after style.css + home-redesign.css.
+   Overrides only the investments page (.nl-*).
+   ========================================================== */
+
+/* ---------- shell ---------- */
+.nl-invest-page { max-width: 920px; }
+
+.nl-live-dock {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 7;
+  margin: 0 0 16px;
+  border: 1px solid rgba(255, 255, 255, .92);
+  border-radius: 22px;
+  /* solid, not translucent: anything else repaints/jitters while pinned */
+  background: #FFFDF9;
+  box-shadow: 0 10px 26px rgba(69, 52, 35, .12);
+  overflow: hidden;
+}
+
+
+/* ---------- head ---------- */
+.nl-dock-head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 15px 0;
+}
+
+.nl-dock-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+.nl-dock-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #33302B, #16140F);
+  color: #FFF7EF;
+  font-size: 19px;
+  font-weight: 800;
+  transition: width .45s cubic-bezier(.22, 1, .36, 1),
+              height .45s cubic-bezier(.22, 1, .36, 1),
+              border-radius .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+.nl-dock-text { min-width: 0; }
+.nl-dock-text strong {
+  display: block;
+  font-size: 14.5px;
+  letter-spacing: .2px;
+  line-height: 1.2;
+}
+.nl-dock-text small {
+  display: block;
+  margin-top: 3px;
+  color: #81766E;
+  font-size: 9.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: opacity .3s, max-height .3s;
+}
+
+.nl-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #f0faf4;
+  color: #2b7a5b;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  transition: opacity .3s;
+}
+.nl-live-badge i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2f9b6c;
+  animation: nlPulse 1.9s ease-in-out infinite;
+}
+@keyframes nlPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .35; transform: scale(.72); }
+}
+
+/* ---------- price line ---------- */
+.nl-price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+  margin: 8px 15px 0;
+}
+
+.nl-price-line strong {
+  font-size: clamp(25px, 6vw, 33px);
+  font-weight: 850;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nl-price-line .nl-delta {
+  font-size: 11px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+.nl-price-line .nl-delta.positive { color: #168A68; }
+.nl-price-line .nl-delta.negative { color: #C65A43; }
+
+.nl-tick-flag {
+  display: inline-block;
+  width: 0;
+  height: 11px;
+  border-radius: 2px;
+  transition: width .18s ease;
+}
+.nl-tick-flag.up { width: 4px; background: #168A68; }
+.nl-tick-flag.down { width: 4px; background: #C65A43; }
+.nl-tick-flag::after { content: none; }
+
+/* ---------- stats ---------- */
+.nl-chart-stats {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 7px 15px 0;
+  color: #9a8e81;
+  font-size: 8px;
+  letter-spacing: .8px;
+  max-height: 34px;
+  overflow: hidden;
+}
+.nl-chart-stats b {
+  margin-left: 4px;
+  color: #4c433a;
+  font-size: 9px;
+  letter-spacing: 0;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- chart ---------- */
+.nl-chart-area {
+  position: relative;
+  margin: 8px 4px 0;
+  height: 140px;
+  touch-action: pan-y;
+}
+
+.nl-chart-area canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nl-chart-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -4px);
+  padding: 5px 8px;
+  border-radius: 9px;
+  background: #201d19;
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .13s;
+  z-index: 3;
+}
+.nl-chart-tip.show { opacity: 1; }
+.nl-chart-tip small {
+  display: block;
+  margin-top: 1px;
+  color: #a89c8e;
+  font-size: 8px;
+  font-weight: 500;
+}
+
+/* ---------- axis + ranges ---------- */
+.nl-chart-axis {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 15px 0;
+  color: #a1968b;
+  font-size: 8px;
+  letter-spacing: .2px;
+  max-height: 16px;
+  overflow: hidden;
+}
+
+.nl-range-controls {
+  display: flex;
+  gap: 4px;
+  margin: 9px 15px 0;
+  padding: 4px;
+  border-radius: 12px;
+  background: #f5f0e9;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.nl-range-controls button {
+  flex: 1;
+  padding: 7px 4px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #81766E;
+  font-size: 9.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .22s, color .22s, transform .18s;
+}
+.nl-range-controls button:active { transform: scale(.94); }
+.nl-range-controls button.active {
+  color: #fff;
+  background: #26231f;
+  box-shadow: 0 3px 8px rgba(29, 28, 27, .16);
+}
+
+.nl-sim-note {
+  margin: 8px 15px 0;
+  color: #a3988d;
+  font-size: 8.5px;
+  text-align: right;
+  max-height: 16px;
+  overflow: hidden;
+}
+
+/* ---------- ATTACHED trade bar ---------- */
+.nl-trade-attached {
+  margin-top: 11px;
+  padding: 12px 15px 14px;
+  border-top: 1px solid #efe7dd;
+  background: linear-gradient(180deg, rgba(250, 244, 236, .5), rgba(247, 240, 231, .92));
+}
+
+.nl-trade-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nl-qty-group {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 40px;
+  border: 1px solid #e7ded3;
+  border-radius: 12px;
+  background: #fffdf9;
+  overflow: hidden;
+}
+
+.nl-qty-step {
+  width: 30px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: #6f6459;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .16s, color .16s;
+}
+.nl-qty-step:active { background: #f3ece3; color: #1D1C1B; }
+
+.nl-qty-input {
+  width: 54px;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  border-left: 1px solid #f0e8de;
+  border-right: 1px solid #f0e8de;
+  background: transparent;
+  color: #1D1C1B;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+}
+.nl-qty-input::-webkit-outer-spin-button,
+.nl-qty-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.nl-qty-input:focus { outline: none; background: #fff; }
+
+.nl-trade-buttons { display: flex; gap: 7px; flex: 1 1 auto; }
+
+.nl-buy, .nl-sell {
+  flex: 1;
+  height: 40px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1px;
+  cursor: pointer;
+  transition: transform .16s, filter .2s, box-shadow .2s;
+}
+
+.nl-buy {
+  background: linear-gradient(180deg, #1aa378, #14805f);
+  box-shadow: 0 5px 14px rgba(20, 128, 95, .26);
+}
+.nl-sell {
+  background: linear-gradient(180deg, #c96a50, #b0533c);
+  box-shadow: 0 5px 14px rgba(176, 83, 60, .22);
+}
+.nl-buy:active, .nl-sell:active { transform: scale(.965); filter: brightness(1.04); }
+
+.nl-trade-feedback {
+  margin: 8px 0 0;
+  color: #81766E;
+  font-size: 9.5px;
+  min-height: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nl-trade-feedback.is-error { color: #C65A43; font-weight: 700; }
+.nl-trade-feedback.is-ok { color: #168A68; font-weight: 700; }
+
+/* ---------- flash feedback on price ---------- */
+@keyframes nlFlashUp {
+  0% { background: rgba(22, 138, 104, .16); }
+  100% { background: transparent; }
+}
+@keyframes nlFlashDown {
+  0% { background: rgba(198, 90, 67, .16); }
+  100% { background: transparent; }
+}
+.nl-price-line strong.tick-up { animation: nlFlashUp .6s ease-out; border-radius: 6px; }
+.nl-price-line strong.tick-down { animation: nlFlashDown .6s ease-out; border-radius: 6px; }
+
+/* ---------- modal-free toast for trades ---------- */
+.nl-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 14px);
+  z-index: 60;
+  max-width: 86vw;
+  padding: 11px 16px;
+  border-radius: 14px;
+  background: rgba(32, 29, 25, .95);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 650;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .26s ease, transform .34s cubic-bezier(.22, 1, .36, 1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.nl-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- holding chip in dock ---------- */
+.nl-holding-chip[hidden] { display: none; }
+.nl-holding-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #f3efe8;
+  color: #6d6156;
+  font-size: 8.5px;
+  font-weight: 750;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+.nl-holding-chip b { color: #221f1c; font-size: 9px; }
+
+@media (max-width: 380px) {
+  .nl-chart-area { height: 128px; }
+  .nl-qty-input { width: 46px; }
+  .nl-qty-step { width: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nl-live-dock,
+  .nl-live-dock * {
+    transition-duration: .001s !important;
+    animation-duration: .001s !important;
+  }
+}
+
+/* ---------- reconciliations with the base stylesheet ---------- */
+.nl-buy, .nl-sell { padding: 0 10px; line-height: 1; }
+.nl-price-line .nl-tick-flag { align-self: center; }
+.nl-section-head > strong {
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: -.4px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.nl-section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* ---------- stats: always one tidy row ---------- */
+.nl-chart-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 8px 15px 0;
+}
+.nl-chart-stats span { display: grid; gap: 2px; min-width: 0; }
+.nl-chart-stats b {
+  margin-left: 0;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- short screens: keep more room for the market list ---------- */
+@media (max-height: 760px) {
+  .nl-chart-area { height: 116px; }
+  .nl-dock-icon { width: 36px; height: 36px; font-size: 17px; }
+  .nl-price-line strong { font-size: clamp(22px, 5.4vw, 28px); }
+  .nl-sim-note { display: none; }
+  .nl-trade-attached { padding-top: 10px; padding-bottom: 11px; }
+}
+
+/* portfolio flash when you jump to it */
+.nl-portfolio-panel.is-flash { box-shadow: 0 0 0 2px rgba(199, 154, 74, .5); transition: box-shadow .3s ease; }

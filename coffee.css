@@ -1,0 +1,152 @@
+/* =========================================================
+   NU LIMITS — NU ROAST COFFEE (Round 41)
+   Storefront, menu cards, delivery tracking, books, reviews.
+   ========================================================= */
+
+.cf-page { padding-bottom: 26px; }
+
+/* header */
+.cf-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin: 14px 0 12px; }
+.cf-hello { margin: 0 0 4px; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted, #8A8177); }
+.cf-top h1 { margin: 0; font-size: 21px; line-height: 1.15; letter-spacing: -.02em; color: var(--ink, #1D1C1B); }
+.cf-rating { padding: 6px 10px; border-radius: 999px !important; background: rgba(29, 28, 27, .06); font-size: 10px; font-weight: 800; color: #8E5750; }
+
+.cf-search {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 14px; border-radius: 999px !important;
+  background: #fff; border: 1px solid rgba(29, 28, 27, .1);
+  box-shadow: 0 8px 20px rgba(40, 30, 24, .06);
+}
+.cf-search span { font-size: 14px; color: #A09189; }
+.cf-search input { flex: 1; border: 0; outline: 0; background: none; font: inherit; font-size: 11.5px; color: var(--ink, #1D1C1B); }
+
+/* promo */
+.cf-promo {
+  position: relative; margin: 12px 0; min-height: 132px;
+  border-radius: 18px !important; overflow: hidden;
+  background-size: cover; background-position: center; background-color: #3a2a22;
+  display: flex; align-items: flex-end; padding: 13px;
+}
+.cf-promo-veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 10, 8, .88) 0%, rgba(14, 10, 8, .5) 60%, rgba(14, 10, 8, .2) 100%); }
+.cf-promo-body { position: relative; z-index: 2; color: #fff; }
+.cf-promo-body small { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+.cf-promo-body h2 { margin: 3px 0 9px; font-size: 19px; letter-spacing: -.02em; }
+.cf-promo-cta { padding: 9px 15px; border: 0; border-radius: 999px !important; background: #fff; color: #241C18; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }
+.cf-promo-edit { position: absolute; z-index: 3; top: 10px; right: 10px; padding: 6px 10px; border: 1px dashed rgba(255,255,255,.55); border-radius: 999px !important; background: rgba(20,14,12,.45); color: #fff; font: inherit; font-size: 8.5px; font-weight: 800; cursor: pointer; }
+
+/* sections */
+.cf-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 15px 0 9px; }
+.cf-section-head h3 { margin: 0; font-size: 13.5px; color: var(--ink, #1D1C1B); }
+.cf-section-head span { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted, #8A8177); }
+
+/* popular rail */
+.cf-rail { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.cf-rail::-webkit-scrollbar { display: none; }
+.cf-pop { flex: 0 0 auto; width: 96px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; font: inherit; }
+.cf-pop-art { position: relative; display: block; width: 96px; height: 96px; border-radius: 15px !important; background-size: cover; background-position: center; background-color: #2b2723; box-shadow: 0 10px 20px rgba(40,30,24,.14); }
+.cf-pop-art i { position: absolute; top: 6px; left: 6px; padding: 3px 6px; border-radius: 6px; background: #2F7A5F; color: #fff; font-size: 8px; font-style: normal; font-weight: 800; }
+.cf-pop-art em { position: absolute; inset: auto 6px 6px 6px; padding: 3px 5px; border-radius: 6px; background: rgba(14,10,8,.72); color: #fff; font-size: 7.5px; font-style: normal; text-align: center; }
+.cf-pop b { display: block; margin-top: 7px; font-size: 10.5px; color: var(--ink, #1D1C1B); }
+.cf-pop small { font-size: 9.5px; color: #8E5750; font-weight: 700; }
+
+/* rewards */
+.cf-rewards { display: flex; align-items: center; gap: 10px; margin: 13px 0; padding: 11px 13px; border-radius: 15px !important; background: linear-gradient(135deg, rgba(227,179,173,.35), rgba(206,143,136,.18)); border: 1px solid rgba(206,143,136,.45); }
+.cf-rewards-ico { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #8E5750; font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+.cf-rewards div { flex: 1; }
+.cf-rewards b { display: block; font-size: 11.5px; color: var(--ink, #1D1C1B); }
+.cf-rewards small { display: block; font-size: 9px; color: #8E5750; }
+.cf-rewards button { padding: 7px 12px; border: 0; border-radius: 999px !important; background: #E3B3AD; color: #2A2120; font: inherit; font-size: 9.5px; font-weight: 800; cursor: pointer; }
+
+/* categories */
+.cf-cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; }
+.cf-cat { position: relative; display: grid; justify-items: center; gap: 5px; padding: 10px 4px; border: 1px solid rgba(29,28,27,.09); border-radius: 14px !important; background: #fff; font: inherit; cursor: pointer; }
+.cf-cat span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: rgba(206,143,136,.22); color: #8E5750; font-size: 11px; font-weight: 800; }
+.cf-cat b { font-size: 8.5px; color: #5E534C; font-weight: 700; }
+.cf-cat.is-on { border-color: #CE8F88; background: rgba(246,220,215,.5); }
+.cf-cat-add { border-style: dashed; }
+.cf-cat-x { position: absolute; top: -5px; right: -3px; width: 16px; height: 16px; display: grid; place-items: center; border-radius: 50%; background: #C9685F; color: #fff; font-size: 8px; font-style: normal; }
+
+/* items */
+.cf-items { display: grid; gap: 9px; }
+.cf-item { position: relative; display: flex; gap: 11px; padding: 10px; border-radius: 16px !important; background: #fff; border: 1px solid rgba(29,28,27,.08); box-shadow: 0 8px 20px rgba(40,30,24,.06); }
+.cf-item.is-out { opacity: .72; }
+.cf-item-art { position: relative; flex: 0 0 74px; width: 74px; height: 74px; border-radius: 13px !important; background-size: cover; background-position: center; background-color: #2b2723; }
+.cf-item-swap { position: absolute; bottom: 4px; right: 4px; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: rgba(16,14,12,.65); color: #fff; font-size: 9px; font-style: normal; cursor: pointer; }
+.cf-item-txt { flex: 1; min-width: 0; }
+.cf-item-txt b { display: block; font-size: 12px; color: var(--ink, #1D1C1B); }
+.cf-item-txt small { display: block; margin: 2px 0 5px; font-size: 9.5px; line-height: 1.35; color: var(--muted, #8A8177); }
+.cf-item-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+.cf-now { font-size: 11.5px; font-weight: 800; color: var(--ink, #1D1C1B); }
+.cf-was { font-size: 9.5px; color: #A09189; text-decoration: line-through; }
+.cf-off { padding: 2px 6px; border-radius: 5px !important; background: rgba(47,122,95,.14); color: #2F7A5F; font-size: 8.5px; font-weight: 800; }
+.cf-stock { padding: 2px 7px; border-radius: 999px !important; font-size: 8px; font-weight: 800; letter-spacing: .04em; }
+.cf-stock.in { background: rgba(47,122,95,.14); color: #2F7A5F; }
+.cf-stock.out { background: rgba(176,69,59,.14); color: #B0453B; }
+.cf-item-add-btn { align-self: center; width: 30px; height: 30px; border: 0; border-radius: 50% !important; background: #E3B3AD; color: #2A2120; font: inherit; font-size: 15px; font-weight: 800; cursor: pointer; }
+.cf-item-add-btn:disabled { opacity: .4; cursor: default; }
+.cf-item-edit { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+.cf-item-edit button, .cf-mini { padding: 5px 7px; border: 1px dashed rgba(206,143,136,.6); border-radius: 999px !important; background: rgba(246,220,215,.5); color: #8E5750; font: inherit; font-size: 8px; font-weight: 800; cursor: pointer; }
+.cf-mini.x { background: rgba(201,104,95,.16); border-color: rgba(201,104,95,.5); color: #B0453B; }
+.cf-item-add { min-height: 76px; border: 1px dashed rgba(206,143,136,.7); border-radius: 16px !important; background: rgba(246,220,215,.3); color: #8E5750; font: inherit; cursor: pointer; display: grid; place-items: center; gap: 2px; }
+.cf-item-add span { font-size: 18px; }
+.cf-item-add b { font-size: 11px; }
+.cf-item-add small { font-size: 8px; }
+
+/* tabs */
+.cf-tabs { display: flex; gap: 6px; overflow-x: auto; margin: 12px 0 4px; padding-bottom: 3px; scrollbar-width: none; }
+.cf-tabs::-webkit-scrollbar { display: none; }
+.cf-tab { flex: 0 0 auto; padding: 8px 12px; border: 1px solid rgba(29,28,27,.1); border-radius: 999px !important; background: #fff; color: #5E534C; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.cf-tab.is-on { background: #1B1A18; border-color: #1B1A18; color: #fff; }
+
+/* orders */
+.cf-order { margin-bottom: 10px; padding: 12px; border-radius: 16px !important; background: #fff; border: 1px solid rgba(29,28,27,.09); box-shadow: 0 8px 20px rgba(40,30,24,.06); }
+.cf-order.is-done { background: rgba(29,28,27,.03); }
+.cf-order header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cf-order header code { font-size: 10px; font-weight: 800; letter-spacing: .06em; color: #6E635C; }
+.cf-order-state { padding: 3px 8px; border-radius: 999px !important; background: #E3B3AD; color: #2A2120; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.cf-order-state.done { background: rgba(47,122,95,.16); color: #2F7A5F; }
+.cf-order-route { display: flex; align-items: center; gap: 7px; margin: 8px 0 5px; font-size: 11px; color: var(--ink, #1D1C1B); }
+.cf-order-route span { color: #B4625A; }
+.cf-order-meta { display: flex; gap: 12px; font-size: 9.5px; color: #8A8177; margin-bottom: 8px; }
+
+/* route strip */
+.cf-route { margin: 10px 0 6px; }
+.cf-route-line { position: relative; height: 4px; border-radius: 999px; background: rgba(29,28,27,.12); }
+.cf-route-line i { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: linear-gradient(90deg, #E3B3AD, #B4625A); transition: width .6s ease; }
+.cf-route-scooter { position: absolute; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: #B4625A; border: 2.5px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); transform: translateX(-50%); transition: left .6s ease; }
+.cf-route-dots { display: flex; justify-content: space-between; margin-top: 9px; }
+.cf-route-dots span { display: grid; justify-items: center; gap: 3px; font-size: 7.5px; color: #B0A69E; }
+.cf-route-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(29,28,27,.15); }
+.cf-route-dots span.on i { background: #B4625A; }
+.cf-route-dots span.on { color: #8E5750; font-weight: 700; }
+.cf-route-eta { margin: 8px 0 0; font-size: 9.5px; color: #8A8177; }
+
+/* reviews */
+.cf-rating-box { display: flex; align-items: center; gap: 12px; padding: 13px; margin-bottom: 10px; border-radius: 16px !important; background: linear-gradient(135deg, rgba(227,179,173,.3), rgba(206,143,136,.14)); border: 1px solid rgba(206,143,136,.4); }
+.cf-rating-box b { font-size: 28px; letter-spacing: -.03em; color: var(--ink, #1D1C1B); }
+.cf-stars { color: #D9A441; font-size: 11px; letter-spacing: 1px; }
+.cf-rating-box small { display: block; font-size: 9px; color: #8E5750; }
+.cf-review { padding: 11px; margin-bottom: 8px; border-radius: 14px !important; background: #fff; border: 1px solid rgba(29,28,27,.08); }
+.cf-review header { display: flex; align-items: center; gap: 9px; }
+.cf-review header div { flex: 1; min-width: 0; }
+.cf-review header b { display: block; font-size: 10.5px; color: var(--ink, #1D1C1B); }
+.cf-review header small { display: block; font-size: 8.5px; color: #A09189; }
+.cf-review p { margin: 8px 0 0; font-size: 10.5px; line-height: 1.5; color: #5E534C; }
+
+/* dark theme */
+html[data-theme="dark"] .cf-search,
+html[data-theme="dark"] .cf-cat,
+html[data-theme="dark"] .cf-item,
+html[data-theme="dark"] .cf-order,
+html[data-theme="dark"] .cf-review,
+html[data-theme="dark"] .cf-tab { background: #1D1917; border-color: rgba(255,246,235,.09); color: #E7DAD3; }
+html[data-theme="dark"] .cf-top h1,
+html[data-theme="dark"] .cf-pop b,
+html[data-theme="dark"] .cf-item-txt b,
+html[data-theme="dark"] .cf-now,
+html[data-theme="dark"] .cf-section-head h3,
+html[data-theme="dark"] .cf-order-route,
+html[data-theme="dark"] .cf-review header b { color: #F2E9E3; }
+html[data-theme="dark"] .cf-item-txt small,
+html[data-theme="dark"] .cf-review p { color: #B7A9A1; }
+html[data-theme="dark"] .cf-tab.is-on { background: #E3B3AD; border-color: #E3B3AD; color: #241F1D; }

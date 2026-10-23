@@ -1,0 +1,484 @@
+/* ==========================================================
+   NU LIMITS — WALLET, CALENDAR & FINANCE  (round 7)
+   Realistic payment cards (chip, contactless, embossed number),
+   fluid card switching, weekday date bar, monthly bill card.
+   ========================================================== */
+
+.nl-wallet {
+  position: relative;
+  margin: 16px 0 14px;
+  padding: 0;
+  min-height: 0;
+}
+
+/* ---------- date bar ---------- */
+.nl-datebar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 12px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, .94);
+  border-radius: 13px;
+  background: rgba(255, 253, 249, .88);
+  box-shadow: 0 5px 16px rgba(74, 54, 35, .06);
+  color: #6f6459;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+.nl-datebar-icon { color: #F47B20; font-size: 11px; }
+.nl-datebar-date {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nl-datebar-day {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border-radius: 7px;
+  background: #17150F;
+  color: #fff;
+  font-size: 8.5px;
+  letter-spacing: .6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- card deck ---------- */
+.nl-deck {
+  position: relative;
+  height: 0;
+  padding-bottom: calc(62.5% + 40px);
+  perspective: 1400px;
+}
+
+.nl-card {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 16px 14px;
+  border: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transform-origin: 50% 78%;
+  transition:
+    transform .62s cubic-bezier(.22, 1, .36, 1),
+    opacity .38s ease,
+    filter .5s ease,
+    box-shadow .55s ease;
+  will-change: transform;
+}
+
+.nl-card.is-back { cursor: pointer; }
+
+.nl-card:focus-visible { outline: 3px solid rgba(244, 123, 32, .6); outline-offset: 3px; }
+
+/* stacked position, like two cards on a table */
+.nl-card.is-front {
+  z-index: 3;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(-.7deg) scale(1);
+  box-shadow: 0 20px 38px rgba(20, 16, 12, .30), 0 3px 10px rgba(20, 16, 12, .16);
+}
+.nl-card.is-back {
+  z-index: 2;
+  opacity: .92;
+  filter: brightness(.84) saturate(.92);
+  transform: translate3d(0, 34px, -40px) rotate(1.6deg) scale(.955);
+  box-shadow: 0 12px 24px rgba(20, 16, 12, .18);
+}
+
+@keyframes nlDeal {
+  0%   { transform: translate3d(0, -30px, 70px) rotateX(12deg) rotateZ(3.2deg) scale(1.03); opacity: .4; }
+  60%  { opacity: 1; }
+  100% { transform: translate3d(0, 0, 0) rotate(-.7deg) scale(1); }
+}
+.nl-deck.is-swapping .nl-card.is-front { animation: nlDeal .62s cubic-bezier(.22, 1, .36, 1); }
+
+@keyframes nlPulseCard {
+  0% { filter: brightness(1); }
+  35% { filter: brightness(1.22); }
+  100% { filter: brightness(1); }
+}
+.nl-card.is-pulsing { animation: nlPulseCard .5s ease-out; }
+
+/* ---------- card faces ---------- */
+.nl-card-debit {
+  color: #fff;
+  background:
+    radial-gradient(120% 95% at 88% -8%, rgba(255, 255, 255, .18), transparent 58%),
+    radial-gradient(80% 60% at 10% 110%, rgba(244, 123, 32, .18), transparent 60%),
+    linear-gradient(145deg, #36322c 0%, #191712 46%, #0c0b09 100%);
+}
+.nl-card-credit {
+  color: #1B1916;
+  background:
+    radial-gradient(120% 95% at 18% -10%, rgba(255, 255, 255, .78), transparent 50%),
+    radial-gradient(80% 70% at 100% 110%, rgba(255, 255, 255, .38), transparent 60%),
+    linear-gradient(145deg, #F7F4EE 0%, #DFD7CA 34%, #B9B0A1 72%, #CFC7B9 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .62), inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+.nl-card-credit .nl-card-issuer { color: #2A2620; }
+.nl-card-credit .nl-card-kind { border-color: rgba(27, 25, 22, .5); color: #2A2620; opacity: .78; }
+.nl-card-credit .nl-card-number { color: #211E19; opacity: 1; }
+.nl-card-credit .nl-card-holder small,
+.nl-card-credit .nl-card-exp small { color: #3d372f; opacity: .62; }
+.nl-card-credit .nl-card-holder,
+.nl-card-credit .nl-card-exp { color: #211E19; }
+
+.nl-card-sheen {
+  position: absolute;
+  inset: -60% -30%;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+    transparent 36%,
+    rgba(255, 255, 255, .16) 47%,
+    rgba(255, 255, 255, .04) 52%,
+    transparent 62%);
+  transform: translateX(-6%);
+}
+.nl-card-credit .nl-card-sheen {
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(255, 255, 255, .85) 46%,
+    rgba(255, 255, 255, .2) 53%,
+    transparent 66%);
+}
+
+.nl-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.nl-card-issuer {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 2.4px;
+}
+.nl-card-issuer b { font-weight: 850; color: #F47B20; }
+.nl-card-credit .nl-card-issuer b { color: #B4551A; }
+.nl-card-kind {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: 1.4px;
+  opacity: .72;
+}
+
+.nl-card-mid {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nl-chip { display: block; width: 34px; }
+.nl-chip svg { display: block; width: 100%; height: auto; }
+.nl-card-credit .nl-chip svg rect { stroke: #6B6459; }
+.nl-wave { display: block; width: 17px; opacity: .8; }
+.nl-wave svg { display: block; width: 100%; height: auto; }
+
+.nl-card-balance {
+  margin-left: auto;
+  display: grid;
+  gap: 1px;
+  text-align: right;
+}
+.nl-card-balance small {
+  font-size: 6.5px;
+  letter-spacing: 1px;
+  opacity: .55;
+  font-weight: 750;
+}
+.nl-card-balance strong {
+  font-size: 19px;
+  font-weight: 850;
+  letter-spacing: -.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nl-card-mono {
+  margin-left: auto;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: rgba(23, 21, 15, .16);
+}
+
+.nl-card-number {
+  position: relative;
+  z-index: 1;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  font-variant-numeric: tabular-nums;
+  opacity: .92;
+}
+
+.nl-card-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+.nl-card-holder, .nl-card-exp { display: grid; gap: 2px; }
+.nl-card-holder small, .nl-card-exp small {
+  font-size: 6px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  opacity: .5;
+}
+.nl-card-holder { font-size: 9.5px; font-weight: 800; letter-spacing: .8px; }
+.nl-card-exp { font-size: 9.5px; font-weight: 800; letter-spacing: .6px; font-variant-numeric: tabular-nums; }
+.nl-card-net { margin-left: auto; width: 34px; }
+.nl-card-net svg { display: block; width: 100%; height: auto; }
+
+/* ---------- footer ---------- */
+.nl-wallet-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+.nl-paywith {
+  min-width: 0;
+  color: #81766E;
+  font-size: 9.5px;
+  font-weight: 650;
+  letter-spacing: .2px;
+}
+.nl-paywith b { color: #1D1C1B; font-weight: 850; }
+.nl-flip {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border: 1px solid #E7DED3;
+  border-radius: 999px;
+  background: #FFFDF9;
+  color: #4c433a;
+  font-size: 9.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.nl-flip:active { transform: scale(.96); }
+
+/* ---------- monthly bill card ---------- */
+.nl-eco {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, .94);
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .93), rgba(247, 240, 231, .88));
+  box-shadow: 0 8px 22px rgba(74, 54, 35, .07);
+  transition: border-color .3s, background .3s;
+}
+.nl-eco-main { display: grid; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.nl-eco-main .eyebrow { margin: 0; font-size: 7.5px; color: #9a8e81; }
+.nl-eco-amount {
+  font-size: 16px;
+  font-weight: 850;
+  letter-spacing: -.4px;
+  font-variant-numeric: tabular-nums;
+}
+.nl-eco-when {
+  color: #81766E;
+  font-size: 9px;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nl-eco-pay {
+  flex: 0 0 auto;
+  padding: 11px 14px;
+  border: 0;
+  border-radius: 11px;
+  background: #17150F;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 820;
+  cursor: pointer;
+}
+.nl-eco-pay[hidden] { display: none; }
+
+.nl-eco.is-due {
+  border-color: #EFC08F;
+  background: linear-gradient(145deg, #FFF6EA, #FFEEDC);
+}
+.nl-eco.is-due .nl-eco-main .eyebrow { color: #A5480F; }
+.nl-eco.is-due .nl-eco-amount { color: #A5480F; }
+.nl-eco.is-due .nl-eco-pay { background: #A5480F; }
+
+.nl-eco.is-clear .nl-eco-amount { color: #168A68; }
+
+@media (max-width: 360px) {
+  .nl-card { padding: 13px 13px 12px; border-radius: 17px; }
+  .nl-card-balance strong { font-size: 16px; }
+  .nl-card-number { font-size: 12px; letter-spacing: 1.3px; }
+  .nl-card-holder, .nl-card-exp { font-size: 8.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nl-card, .nl-deck .nl-card.is-front { transition-duration: .001s; animation: none !important; }
+}
+
+/* ---------- calendar strip (top of Home) ---------- */
+.nl-cal {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 10px;
+}
+.nl-cal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nl-cal-year {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.nl-cal-year b {
+  font-size: 20px;
+  font-weight: 850;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: #1D1C1B;
+  font-variant-numeric: tabular-nums;
+}
+.nl-cal-year small {
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #a89b8c;
+}
+.nl-cal-sub {
+  margin-left: auto;
+  color: #9a8e81;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  font-variant-numeric: tabular-nums;
+}
+.nl-cal-skip {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #E7DED3;
+  border-radius: 8px;
+  background: #FFFDF9;
+  color: #81766E;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+.nl-cal-skip:active { transform: scale(.92); }
+
+.nl-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+}
+.nl-dow {
+  display: grid;
+  gap: 1px;
+  justify-items: center;
+  padding: 6px 0 5px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, .92);
+  background: rgba(255, 253, 249, .8);
+  box-shadow: 0 3px 10px rgba(74, 54, 35, .05);
+  color: #a1938a;
+  transition: background .25s, color .25s, transform .25s;
+}
+.nl-dow i {
+  font-style: normal;
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+.nl-dow b {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: -.3px;
+  font-variant-numeric: tabular-nums;
+  color: #3d372f;
+}
+.nl-dow.is-outside { opacity: .42; }
+.nl-dow.is-outside b { font-weight: 700; }
+.nl-dow.is-today {
+  background: #17150F;
+  border-color: #17150F;
+  box-shadow: 0 6px 14px rgba(23, 21, 15, .26);
+  color: #B9AFA2;
+}
+.nl-dow.is-today b { color: #fff; }
+.nl-dow.is-today.is-outside { opacity: 1; }
+
+.nl-card-credit .nl-card-balance { text-align: right; }
+.nl-card-credit .nl-card-balance small { color: #4a4238; opacity: .62; }
+.nl-card-credit .nl-card-balance strong { color: #17150F; }
+
+.nl-wallet > .nl-eco { margin: 14px 0 0; }
+
+/* ---------- transaction rows: card badge + game date ---------- */
+.tx-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tx-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: .35px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.tx-card.is-debit {
+  background: #17150F;
+  color: #fff;
+}
+.tx-card.is-credit {
+  background: linear-gradient(135deg, #F1EDE5, #CFC6B7);
+  color: #211E19;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7);
+}
+.tx-meta small { color: #897C6F; font-size: 8.5px; }
+
+/* the description sits on one line if it possibly can */
+.transaction-details strong { line-height: 1.35; }

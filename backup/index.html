@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FCF9F5">
+  <meta name="description" content="Nu Limits — Your vision. Your empire. No limits.">
+  <title>Nu Limits | Business Empire</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home-redesign.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      
+<a class="brand" href="#home" aria-label="Nu Limits home">
+  <img src="images/nu-limits-logo.png" alt="Nu Limits" class="brand-logo">
+</a>
+
+      <button class="icon-button" id="notifications" aria-label="Notifications">
+        <span>♧</span>
+      </button>
+    </header>
+
+    <main id="main-content">
+      <section class="welcome">
+        <p class="eyebrow">Empire created by Obey</p>
+        <h1>Think bigger.<br><span>Build limitless.</span></h1>
+        <p class="muted">Your vision. Your empire. No limits.</p>
+      </section>
+
+     
+<div class="wallet-stack" id="wallet-stack">
+  <!-- DEBIT CARD -->
+  <section class="balance-card glass-panel wallet-card debit-card is-active">
+    <div class="balance-heading">
+      <span class="eyebrow">DEBIT · TOTAL NET WORTH</span>
+      <span class="status-dot">● LIVE</span>
+    </div>
+
+    <p class="balance-amount" id="balance">R 100,000</p>
+
+    <div class="game-date-display">
+      <span class="game-date-icon">✦</span>
+      <span id="game-date">Tuesday · 1 January 2030</span>
+      <span id="game-day">DAY 1</span>
+    </div>
+
+    <div class="balance-footer">
+      <span class="muted">Empire Level <strong id="level">01</strong></span>
+      <span class="balance-badge">✦ Founder</span>
+    </div>
+
+    <div class="wallet-card-bottom">
+      <span class="wallet-chip">▦</span>
+      <span class="wallet-player-name" id="debit-player-name">Obey</span>
+      <span class="wallet-brand visa-brand">VISA</span>
+    </div>
+
+    <div class="balance-glow"></div>
+  </section>
+
+  <!-- PLATINUM CREDIT CARD -->
+  <section class="wallet-card credit-card" aria-label="Platinum credit card">
+    <div class="credit-card-top">
+      <span class="eyebrow">PLATINUM</span>
+      <span class="credit-card-symbol">✦</span>
+    </div>
+
+    <div class="platinum-title">NU LIMITS</div>
+    <div class="platinum-subtitle">PREMIUM CREDIT</div>
+
+    <div class="wallet-card-bottom">
+      <span class="wallet-chip">▦</span>
+      <span class="wallet-player-name" id="credit-player-name">PLAYER NAME</span>
+      <span class="wallet-brand mastercard-brand">mastercard</span>
+    </div>
+
+    <div class="credit-card-shine"></div>
+  </section>
+
+  <button
+    class="wallet-switch"
+    id="wallet-switch"
+    type="button"
+    aria-label="Switch debit and credit cards"
+  >
+    <span>⇄</span> Switch card
+  </button>
+
+  <div class="wallet-card-indicator" aria-live="polite">
+    <span class="wallet-dot active"></span>
+    <span class="wallet-dot"></span>
+    <span id="wallet-card-label">Debit card</span>
+  </div>
+</div>
+
+
+<div class="earn-click-card">
+  <div class="earn-click-info">
+    <span class="earn-click-icon">✦</span>
+    <div>
+      <p class="eyebrow">QUICK EARNINGS</p>
+      <h3>Earn Per Click</h3>
+      <p class="earn-click-description">Tap to grow your empire</p>
+    </div>
+  </div>
+
+  <button id="earn-click-button" class="earn-click-button" type="button">
+    <span>＋</span>
+    Earn R 15
+  </button>
+</div>
+
+      <section class="section-block money-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MONEY MANAGEMENT</p>
+            <h2>Money activity</h2>
+          </div>
+          <span class="section-symbol">↕</span>
+        </div>
+
+
+      
+<div class="transaction-list glass-panel">
+  <div class="transaction-list-heading">
+    <strong>Recent transactions</strong>
+
+    <div class="transaction-heading-actions">
+      <span id="transaction-count">0 records</span>
+
+      <button
+        id="transaction-toggle"
+        class="transaction-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="transaction-history"
+        aria-label="Minimize transactions"
+      >
+        <span id="transaction-toggle-icon" aria-hidden="true">⌃</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="transaction-history" aria-live="polite">
+    <p class="empty-transactions">
+      Your transactions will appear here.
+    </p>
+  </div>
+</div>
+
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR NEXT MOVE</p>
+            <h2>Build your empire</h2>
+          </div>
+          <span class="section-symbol">↗</span>
+        </div>
+
+        <div class="action-grid">
+          <button class="action-card" data-page="business">
+            <span class="action-icon">⌘</span>
+            <span class="action-title">Businesses</span>
+            <span class="action-subtitle">Create your legacy</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="invest">
+            <span class="action-icon">◈</span>
+            <span class="action-title">Investments</span>
+            <span class="action-subtitle">Grow your capital</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="property">
+            <span class="action-icon">⌂</span>
+            <span class="action-title">Properties</span>
+            <span class="action-subtitle">Own the skyline</span>
+            <span class="action-arrow">↗</span>
+          </button>
+          <button class="action-card" data-page="shop">
+            <span class="action-icon">◇</span>
+            <span class="action-title">Luxury Shop</span>
+            <span class="action-subtitle">Live without limits</span>
+            <span class="action-arrow">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EMPIRE ACTIVITY</p>
+            <h2>Your journey</h2>
+          </div>
+        </div>
+        <div class="activity-card glass-panel" id="activity">
+          <span class="activity-icon">✦</span>
+          <div>
+            <strong>Your story begins now</strong>
+            <p class="muted">Make your first move and build your future.</p>
+          </div>
+          <span class="activity-arrow">→</span>
+        </div>
+      </section>
+
+      
+
+      
+
+
+
+    </main>
+
+    <div id="dynamic-page" hidden></div>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-page="home" aria-current="page">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></svg></span>
+        <small>Home</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="business">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></span>
+        <small>Business</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="invest">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg></span>
+        <small>Invest</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="shop">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+        <small>Shop</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+      <button class="nav-item" data-page="more">
+        <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+        <small>More</small><span class="nav-indicator" aria-hidden="true"></span>
+      </button>
+    </nav>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

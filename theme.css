@@ -1,0 +1,261 @@
+/* ==========================================================
+   NU LIMITS — THEME CONTROLS  (hand-written)
+   Dark palette itself lives in theme-dark.css (generated).
+   ========================================================== */
+
+.theme-row { display: grid; gap: 10px; }
+.theme-set {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 13px;
+  background: rgba(29, 28, 27, .06);
+}
+.theme-set button {
+  padding: 9px 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  font-size: 9.6px;
+  font-weight: 780;
+  letter-spacing: .1px;
+  color: #6E6157;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.theme-set button:hover { color: #1D1C1B; }
+.theme-set button.is-on {
+  background: #fff;
+  color: #1D1C1B;
+  box-shadow: 0 2px 9px rgba(80, 55, 30, .13), inset 0 0 0 1px rgba(255, 255, 255, .7);
+}
+
+html[data-theme="dark"] .theme-set { background: rgba(255, 246, 235, .07); }
+html[data-theme="dark"] .theme-set button { color: #B7A99B; }
+html[data-theme="dark"] .theme-set button:hover { color: #F4EEE6; }
+html[data-theme="dark"] .theme-set button.is-on {
+  background: #322B25;
+  color: #F7F1E9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 246, 235, .10);
+}
+
+/* smooth hand-over between themes */
+html.theme-anim,
+html.theme-anim body,
+html.theme-anim .glass-panel,
+html.theme-anim .fm-card,
+html.theme-anim .bk-card,
+html.theme-anim .cr-card,
+html.theme-anim .sh-card,
+html.theme-anim .mn-card,
+html.theme-anim .rs-card {
+  transition: background-color .22s ease, color .22s ease, border-color .22s ease;
+}
+
+/* logo swaps to the dark artwork instead of being filtered */
+.brand .brand-logo-dark { display: none; }
+html[data-theme="dark"] .brand .brand-logo-light { display: none; }
+html[data-theme="dark"] .brand .brand-logo-dark { display: block; }
+
+/* round 22 lockup — NL monogram, then the wordmark beside it */
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  line-height: 0;
+}
+.brand-mark-img {
+  display: block;
+  height: 21px;
+  width: auto;
+}
+.brand-word-img {
+  display: block;
+  height: 9px;
+  width: auto;
+}
+
+/* header row: logo · AI · notifications */
+.topbar.has-ai { gap: 8px; }
+.brand-mark-img-dark,
+.brand-word-img-dark { display: none; }
+html[data-theme="dark"] .brand-mark-img-light,
+html[data-theme="dark"] .brand-word-img-light { display: none; }
+html[data-theme="dark"] .brand-mark-img-dark,
+html[data-theme="dark"] .brand-word-img-dark { display: block; }
+
+/* blush: the ink lockup, slightly deeper than pure black */
+html[data-theme="blush"] .brand-mark-img-light,
+html[data-theme="blush"] .brand-word-img-light { display: block; }
+html[data-theme="blush"] .brand-mark-img-dark,
+html[data-theme="blush"] .brand-word-img-dark { display: none; }
+
+/* ==========================================================
+   PREMIUM NIGHT SURFACE  (hand-tuned)
+   Near-black, warm shadow, thin gold.
+   ========================================================== */
+
+html[data-theme="dark"] {
+  --surface: rgba(255, 248, 238, .045);
+  --line: rgba(255, 246, 235, .075);
+  --shadow: 0 20px 44px rgba(0, 0, 0, .55);
+  --purple: #e2be6e;
+  --pink: #f0d8a4;
+  --nu-orange: #d9a94f;
+}
+
+/* ---------- cards ---------- */
+html[data-theme="dark"] .glass-panel,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .bk-card,
+html[data-theme="dark"] .rs-card,
+html[data-theme="dark"] .cr-card,
+html[data-theme="dark"] .sh-card,
+html[data-theme="dark"] .fm-card,
+html[data-theme="dark"] .tx-card {
+  background: linear-gradient(180deg, #191612 0%, #121110 100%);
+  border: 1px solid rgba(255, 246, 235, .075);
+  border-radius: 22px;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, .5),
+    inset 0 1px 0 rgba(255, 246, 235, .05);
+}
+
+/* photo cards keep their art, only the metal around it changes */
+html[data-theme="dark"] .mn-card,
+html[data-theme="dark"] .sh-product,
+html[data-theme="dark"] .sh-store {
+  border: 1px solid rgba(255, 246, 235, .07);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .5);
+}
+
+/* ---------- gold on the small stuff ---------- */
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .sh-brand .eyebrow {
+  color: #c8a878;
+  letter-spacing: 1.3px;
+}
+
+html[data-theme="dark"] .bottom-nav .nav-item.active {
+  color: #f2dcae;
+  background: linear-gradient(180deg, rgba(226, 190, 110, .16), rgba(226, 190, 110, .06));
+}
+html[data-theme="dark"] .bottom-nav .nav-item.active .nav-icon,
+html[data-theme="dark"] .bottom-nav .nav-item.active small { color: #f2dcae; }
+html[data-theme="dark"] .bottom-nav .nav-indicator { background: #e2be6e; }
+
+html[data-theme="dark"] .tx-head { background: transparent; }
+html[data-theme="dark"] .wallet-dot.active { background: #e2be6e; }
+
+/* ---------- primary buttons: rich gold, dark ink ---------- */
+html[data-theme="dark"] .mn-btn:not(.soft):not(.is-ghost):not(.is-danger):not([disabled]),
+html[data-theme="dark"] .bk-btn:not(.is-ghost):not(.is-danger):not([disabled]),
+html[data-theme="dark"] .rs-btn:not(.is-ghost):not(.is-danger):not([disabled]),
+html[data-theme="dark"] .fm-btn:not(.is-ghost):not(.is-danger):not([disabled]),
+html[data-theme="dark"] .cr-btn:not([disabled]),
+html[data-theme="dark"] .sh-btn:not([disabled]),
+html[data-theme="dark"] .nl-btn:not([disabled]) {
+  background: linear-gradient(180deg, #f2d9a6 0%, #dcb066 52%, #b98a3d 100%);
+  color: #241b0c;
+  border: 0;
+  box-shadow:
+    0 8px 22px rgba(216, 172, 95, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .5);
+  text-shadow: none;
+}
+html[data-theme="dark"] .mn-btn:not(.soft):not(.is-ghost):not([disabled]):hover,
+html[data-theme="dark"] .bk-btn:not(.is-ghost):not([disabled]):hover,
+html[data-theme="dark"] .rs-btn:not(.is-ghost):not([disabled]):hover,
+html[data-theme="dark"] .fm-btn:not(.is-ghost):not([disabled]):hover {
+  filter: brightness(1.06);
+}
+
+/* ---------- secondary buttons ---------- */
+html[data-theme="dark"] .mn-btn.soft,
+html[data-theme="dark"] .bk-btn.is-ghost,
+html[data-theme="dark"] .rs-btn.is-ghost,
+html[data-theme="dark"] .fm-btn.is-ghost,
+html[data-theme="dark"] .fm-mini {
+  background: rgba(255, 248, 238, .055);
+  color: #ece4d8;
+  border: 1px solid rgba(255, 246, 235, .10);
+  box-shadow: none;
+}
+html[data-theme="dark"] .mn-btn.soft:hover,
+html[data-theme="dark"] .bk-btn.is-ghost:hover { background: rgba(255, 248, 238, .09); }
+
+/* ---------- chips, toggles, inputs ---------- */
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: rgba(255, 248, 238, .045);
+  border-color: rgba(255, 246, 235, .10);
+  color: #f3eee6;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder { color: #857a6d; }
+
+html[data-theme="dark"] button:focus-visible,
+html[data-theme="dark"] a:focus-visible,
+html[data-theme="dark"] input:focus-visible {
+  outline: 2px solid rgba(226, 190, 110, .55);
+  outline-offset: 2px;
+}
+
+html[data-theme="dark"] ::selection { background: rgba(226, 190, 110, .3); color: #fff; }
+
+html[data-theme="dark"] ::-webkit-scrollbar { width: 8px; height: 8px; }
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(226, 190, 110, .22);
+  border-radius: 8px;
+}
+
+/* headline gradient: bright gold instead of the bronze the generator lands on */
+html[data-theme="dark"] .welcome h1 span {
+  background: linear-gradient(100deg, #f6e2b4 6%, #e2be6e 48%, #b98a3d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+html[data-theme="dark"] .dynamic-page-content > h1 {
+  background: linear-gradient(104deg, #f7f2e9 12%, #e8d6b2 62%, #c9a262 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* destructive actions get their own warm red, not gold */
+html[data-theme="dark"] .fm-btn.is-danger,
+html[data-theme="dark"] .mn-btn.is-danger,
+html[data-theme="dark"] .bk-btn.is-danger,
+html[data-theme="dark"] .rs-btn.is-danger {
+  background: rgba(201, 92, 66, .18);
+  color: #f0a48e;
+  border: 1px solid rgba(201, 92, 66, .36);
+  box-shadow: none;
+}
+html[data-theme="dark"] .fm-btn.is-danger:hover { background: rgba(201, 92, 66, .26); }
+
+/* round 25 — the new logo sits on both wallet cards, small */
+.nl-card-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 0;
+}
+
+.nl-card-brand .nl-card-mark {
+  display: block;
+  height: 15px;
+  width: auto;
+  opacity: .95;
+}
+
+.nl-card-brand .nl-card-word {
+  display: block;
+  height: 6.5px;
+  width: auto;
+  opacity: .95;
+}

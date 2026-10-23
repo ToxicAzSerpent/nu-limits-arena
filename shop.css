@@ -1,0 +1,395 @@
+/* ==========================================================
+   NU LIMITS — LUXURY STORES  (round 6)
+   Replaces the old Shop scaffold with a fashion retail module:
+   brand stores → Women / Men sections → 3:4 product cards.
+   ========================================================== */
+
+.sh-page { max-width: 960px; }
+
+.sh-head { margin-bottom: 16px; }
+.sh-head h1 { margin: 0 0 8px; }
+.sh-head .muted { margin: 0; max-width: 46ch; }
+
+/* ---------- summary ---------- */
+.sh-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, .92);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(247, 240, 231, .86));
+  box-shadow: 0 8px 22px rgba(74, 54, 35, .07);
+}
+.sh-stats span { display: grid; gap: 3px; min-width: 0; }
+.sh-stats small { color: #9a8e81; font-size: 7.5px; letter-spacing: .7px; font-weight: 750; }
+.sh-stats strong {
+  font-size: 13px; font-weight: 850; letter-spacing: -.2px;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ---------- chips ---------- */
+.sh-chips { display: flex; gap: 7px; margin: 0 0 14px; }
+.sh-chips button {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #E7DED3;
+  border-radius: 12px;
+  background: rgba(255, 253, 249, .8);
+  color: #6f6459;
+  font-size: 10.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.sh-chips button.active { background: #17150F; border-color: #17150F; color: #fff; }
+
+/* ---------- store grid ---------- */
+.sh-stores {
+  display: grid;
+  /* container-driven so tiles never get squeezed on wide screens */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.sh-store {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .9);
+  background-color: #241f1a;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 28px rgba(74, 54, 35, .16);
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .2s ease;
+}
+.sh-store:active { transform: scale(.985); }
+.sh-store:hover { box-shadow: 0 16px 34px rgba(74, 54, 35, .22); }
+
+.sh-store::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, .30) 0%,
+    rgba(0, 0, 0, .04) 32%,
+    rgba(0, 0, 0, .28) 62%,
+    rgba(0, 0, 0, .88) 100%);
+}
+
+.sh-store-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+}
+
+.sh-store-name {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  line-height: 1.15;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+}
+.sh-store-name { overflow-wrap: anywhere; }
+.sh-store-meta {
+  margin-top: 5px;
+  color: rgba(255, 255, 255, .66);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+/* ---------- store header ---------- */
+.sh-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 9px 13px;
+  border: 1px solid #E7DED3;
+  border-radius: 11px;
+  background: rgba(255, 253, 249, .9);
+  color: #5c5249;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sh-brand {
+  margin: 0 0 14px;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, .9);
+  background: linear-gradient(150deg, #262320, #141210);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(30, 24, 18, .22);
+}
+.sh-brand h1 {
+  margin: 4px 0 0;
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.sh-brand .eyebrow { color: #FF9A4D; margin: 0; }
+.sh-brand p.muted { color: rgba(255, 255, 255, .62); margin: 6px 0 0; font-size: 10.5px; }
+
+/* ---------- women / men ---------- */
+.sh-seg {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 14px;
+  padding: 4px;
+  border-radius: 13px;
+  background: #f2ece3;
+}
+.sh-seg button {
+  flex: 1;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #81766E;
+  font-size: 10.5px;
+  font-weight: 850;
+  letter-spacing: .4px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.sh-seg button.active {
+  background: #17150F;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(29, 28, 27, .18);
+}
+.sh-seg button small {
+  display: block;
+  margin-top: 2px;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  opacity: .6;
+}
+
+/* ---------- product grid ---------- */
+.sh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(142px, 1fr));
+  gap: 12px;
+}
+
+.sh-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .92);
+  background: #FFFDF9;
+  box-shadow: 0 10px 24px rgba(74, 54, 35, .12);
+  animation: shIn .34s cubic-bezier(.22, 1, .36, 1) both;
+}
+@keyframes shIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.sh-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  background-color: #2b2723;
+}
+.sh-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .22) 0%, rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, .34) 100%);
+}
+
+.sh-owned {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  left: 9px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #DCF3E8;
+  color: #12704F;
+  font-size: 7px;
+  font-weight: 850;
+  letter-spacing: .7px;
+}
+.sh-store-tag {
+  position: absolute;
+  z-index: 2;
+  bottom: 9px;
+  left: 9px;
+  color: rgba(255, 255, 255, .78);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.sh-tools {
+  position: absolute;
+  z-index: 3;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 5px;
+}
+.sh-tools button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 10px;
+  background: rgba(16, 14, 11, .6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+}
+.sh-tools svg { width: 14px; height: 14px; }
+
+.sh-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 10px 11px;
+}
+.sh-name {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: -.1px;
+  line-height: 1.25;
+  color: #1D1C1B;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sh-price {
+  margin: 1px 0 0;
+  font-size: 11px;
+  font-weight: 850;
+  color: #1D1C1B;
+  font-variant-numeric: tabular-nums;
+}
+.sh-meta {
+  margin: 2px 0 8px;
+  color: #9a8e81;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: .2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sh-buy {
+  height: 36px;
+  border: 0;
+  border-radius: 11px;
+  background: #17150F;
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 820;
+  cursor: pointer;
+  transition: transform .15s, filter .2s, background .2s;
+}
+.sh-buy:hover { filter: brightness(1.14); }
+.sh-buy:active { transform: scale(.97); }
+.sh-buy.owned {
+  background: #EFE8DE;
+  color: #6f6459;
+  cursor: default;
+}
+.sh-buy.owned:hover { filter: none; }
+
+/* ---------- add tiles ---------- */
+.sh-add {
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  aspect-ratio: 3 / 4;
+  padding: 12px;
+  border: 1.6px dashed rgba(36, 35, 33, .26);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .42);
+  color: #6f6459;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.sh-add:hover { border-color: rgba(244, 123, 32, .55); background: rgba(255, 245, 235, .6); }
+.sh-add .plus {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 2px;
+  border-radius: 50%;
+  background: #17150F;
+  color: #fff;
+  font-size: 21px;
+  line-height: 1;
+}
+.sh-add strong { font-size: 10.5px; font-weight: 820; color: #2b2722; text-align: center; line-height: 1.3; }
+.sh-add small { font-size: 8px; letter-spacing: .4px; color: #9a8e81; text-align: center; }
+
+.sh-empty {
+  grid-column: 1 / -1;
+  padding: 30px 18px;
+  border: 1px dashed rgba(36, 35, 33, .2);
+  border-radius: 18px;
+  text-align: center;
+  color: #81766E;
+  font-size: 11.5px;
+}
+
+/* ---------- editor extras ---------- */
+.mn-field select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #E7DED3;
+  border-radius: 12px;
+  background: #FFFCF8;
+  color: #1D1C1B;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+}
+.mn-field textarea {
+  width: 100%;
+  min-height: 66px;
+  padding: 12px 13px;
+  border: 1px solid #E7DED3;
+  border-radius: 12px;
+  background: #FFFCF8;
+  color: #1D1C1B;
+  font: inherit;
+  font-size: 12.5px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-item { animation: none !important; }
+}
